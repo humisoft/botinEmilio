@@ -197,5 +197,5 @@ def printAllUsersToConsole(c):
 		print('User Id: ' + n.id)
 		print('-----------------------------')
 	
-
-    client.run(<process.env.BOT_TOKEN>)
+	print(process.env.BOT_TOKEN)
+    client.run('process.env.BOT_TOKEN')
