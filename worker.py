@@ -1,6 +1,7 @@
-import discord
+    import discord
+    import asyncio
 
-client = discord.Client()
+    client = discord.Client()
 
     @client.event
     async def on_ready():
@@ -13,5 +14,5 @@ client = discord.Client()
     async def on_message(message):
         if message.content == "Hello":
             await client.send_message(message.channel, "World")
-
+			
     client.run(process.env.BOT_TOKEN)
