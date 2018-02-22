@@ -5,4 +5,4 @@ import time
 import json
 
 
-print(process.env.BOT_TOKEN)
+print('process.env.BOT_TOKEN')
