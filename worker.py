@@ -5,4 +5,4 @@ import time
 import json
 
 
-print(BOT_TOKEN)
+print(config:get BOT_TOKEN)
