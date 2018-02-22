@@ -198,4 +198,4 @@ def printAllUsersToConsole(c):
 		print('-----------------------------')
 	
 
-    client.run('process.env.BOT_TOKEN')
+    client.run(<process.env.BOT_TOKEN>)
