@@ -15,4 +15,4 @@ import discord
         if message.content == "Hello":
             await client.send_message(message.channel, "World")
 
-    client.run('process.env.BOT_TOKEN')
+    client.run(process.env.BOT_TOKEN)
