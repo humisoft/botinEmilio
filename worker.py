@@ -1,8 +1,9 @@
 import discord
 import asyncio
+import os
 import random
 import time
 import json
 
 
-print(config:get BOT_TOKEN)
+print(os.environ.get(BOT_TOKEN))
