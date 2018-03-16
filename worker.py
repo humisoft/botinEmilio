@@ -1,12 +1,14 @@
 import discord
 import asyncio
-import os
+#import os
 import random
 import time
 import json
 import asyncio
 #import asyncpg
-import bd.py
+#import bd.py
+import os
+import psycopg2
 
 
 #from tinydb import TinyDB, Query
@@ -48,6 +50,9 @@ async def on_message(message):
 
     # BD Select 
     try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur=conn.cursor()
         sql = """select * from giftable;"""
         cur.execute(sql)
