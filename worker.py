@@ -48,12 +48,12 @@ async def on_message(message):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         if message.content.startswith('t!botin'):
          print("esto es message"+message.content)
-		 args = message.content.split(" ")
-		 print("esto es args con todo"+args)
+         args = message.content.split(" ")
+         print("esto es args con todo"+args)
          del args[0]
-		 print("esto es args sin el 0"+args)
+         print("esto es args sin el 0"+args)
          buscar = ' '.join(args)
-		 print("esto es el args en buscar todo string"+buscar)
+         print("esto es el args en buscar todo string"+buscar)
          cur=conn.cursor()
          sql = """SELECT url FROM giftable where tag like '%buscar%' order by random() limit 1;"""
          cur.execute(sql)
