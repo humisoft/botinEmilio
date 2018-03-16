@@ -3,12 +3,6 @@ from urllib import parse
 import psycopg2
 
 parse.uses_netloc.append("postgres")
-url = parse.urlparse(os.environ["DATABASE_URL"])
+DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
