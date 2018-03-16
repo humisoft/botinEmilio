@@ -49,8 +49,8 @@ async def on_message(message):
 	# BD Select 
 	try:
 		cur=conn.cursor()
-	    cur.execute("""SELECT * from giftable;""")
-        #print("fila: ", cur.rowcount)
+		sql = """select * from giftable;"""
+	    cur.execute(sql)
         rows = cur.fetchall()
 		for row in rows:
             await client.send_message(message.channel, row)
