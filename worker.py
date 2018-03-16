@@ -69,7 +69,7 @@ async def on_message(message):
             await client.add_reaction(msg, '👍')
             await client.add_reaction(msg, '👎')
             rea = get_reaction_users(reaction, limit=1, after=279395402606706688)
-            if rea = '👍':
+            if rea == '👍':
                 edit = await client.edit_message(msg, row[0])
                 
             else:
