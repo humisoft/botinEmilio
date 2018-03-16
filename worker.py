@@ -47,7 +47,14 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select
-		conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'")    
+		#conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'") 
+		conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)   
 	cur = conn.cursor()
 	    cur.execute("""SELECT url from giftable limit 1""")
         #print("fila: ", cur.rowcount)
