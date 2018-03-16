@@ -49,9 +49,9 @@ async def on_message(message):
         if message.content.startswith('t!botin'):
          print("esto es message"+message.content)
          args = message.content.split(" ")
-         print("esto es args con todo"+args)
+         print("esto es args 0 con todo"+args[0])
          del args[0]
-         print("esto es args sin el 0"+args)
+         print("esto es args 0 sin el 0"+args[0])
          buscar = ' '.join(args)
          print("esto es el args en buscar todo string"+buscar)
          cur=conn.cursor()
