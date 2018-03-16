@@ -66,7 +66,7 @@ async def on_message(message):
          for row in rows:
             #await client.send_message(message.channel, row[0])
             msg = await client.send_message(message.channel, row[0])
-            await client.add_reaction(msg, "::arrow_left::")
+            await client.add_reaction(msg, "👍")
             #msg = await client.send_message(message.channel, 'React with thumbs up or thumbs down.')
             res = await client.wait_for_reaction(['👍', '👎'], message=msg)
             await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
