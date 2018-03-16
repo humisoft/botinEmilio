@@ -47,14 +47,19 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select 
-	    cur=conn.cursor()
+	try:
+		cur=conn.cursor()
 	    cur.execute("SELECT url from giftable")
         #print("fila: ", cur.rowcount)
         rows = cur.fetchall()
 		for row in rows:
             await client.send_message(message.channel, row)
         cur.close()
-
+	except (Exception, psycopg2.DatabaseError) as error:
+        #print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 	# if "t!sami" in message.content:
 		# await client.send_typing(message.channel)
 		# await client.send_message(message.channel, ball8(message))
