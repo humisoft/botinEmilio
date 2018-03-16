@@ -5,7 +5,7 @@ import random
 import time
 import json
 import asyncio
-import asyncpg
+#import asyncpg
 import bd.py
 
 
