@@ -55,8 +55,8 @@ async def on_message(message):
          buscar = ' '.join(args)
          print("esto es el args en buscar todo string"+buscar)
          cur=conn.cursor()
-         print("esto es el select: "+sql)
          sql = """SELECT url FROM giftable where tag like %s order by random() limit 1;""",('%buscar%')
+         #print("esto es el select: "+sql)
          cur.execute(sql)
          rows = cur.fetchall()
          for row in rows:
