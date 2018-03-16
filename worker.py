@@ -57,7 +57,7 @@ async def on_message(message):
         #print("fila: ", cur.rowcount)
         #row = cur.fetchall()
         await client.send_message(message.channel, answers_for_aldal(message))
-    except
+    except:
         await client.send_message(message.channel, answers_for_rammus(message))
         #while row is not None:
         #    await client.send_message(message.channel,row)
