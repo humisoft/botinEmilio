@@ -52,8 +52,8 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select
-	if "t!prueba" in message.content:
 	conn = None
+	if "t!prueba" in message.content:
     try:
 		#conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'") 
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
