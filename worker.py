@@ -55,8 +55,8 @@ async def on_message(message):
 	try:
 	    cur.execute("""SELECT url from giftable limit 1""")
         #print("fila: ", cur.rowcount)
-        row = cur.fetchall()
-        await client.send_message(message.channel,row)   
+        #row = cur.fetchall()
+        await client.send_message(message.channel, answers_for_aldal(message))
     except
         await client.send_message(message.channel, answers_for_rammus(message))
         #while row is not None:
