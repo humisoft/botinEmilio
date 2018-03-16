@@ -7,6 +7,7 @@ import json
 import asyncio
 import asyncpg
 import bd.py
+import psycopg2
 
 #from tinydb import TinyDB, Query
 
@@ -46,11 +47,18 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select
+	try:
+		conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'")    
+	except:
+		await client.send_message(message.channel, answers_for_gonarch(message))
 	cur = conn.cursor()
-	cur.execute("""SELECT url from giftable limit 1""")
+	try:
+	    cur.execute("""SELECT url from giftable limit 1""")
         #print("fila: ", cur.rowcount)
         row = cur.fetchall()
         await client.send_message(message.channel,row)   
+    except
+        await client.send_message(message.channel, answers_for_rammus(message))
         #while row is not None:
         #    await client.send_message(message.channel,row)
         #    row = cur.fetchone()
