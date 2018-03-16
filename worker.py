@@ -50,7 +50,7 @@ async def on_message(message):
 	cur = conn.cursor();
 	cur.execute("SELECT url from giftable limit 1")
         #print("fila: ", cur.rowcount)
-        row = cur.fetchone()
+        row = cur.fetchall()
         await client.send_message(message.channel,row)
      except:
         await client.send_message(message.channel,content='error al conectar la BD')
