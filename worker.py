@@ -8,6 +8,7 @@ import asyncio
 import asyncpg
 import bd.py
 import psycopg2
+from urllib import parse
 
 #from tinydb import TinyDB, Query
 
