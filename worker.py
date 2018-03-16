@@ -51,7 +51,7 @@ async def on_message(message):
          del args[0]
          buscar = ''.join(args)
          cur=conn.cursor()
-         sql = """SELECT url FROM giftable where tag like '%buscar%' order by random() limit 1;"""
+         sql = """SELECT url FROM giftable where tag like '%marquez%' order by random() limit 1;"""
          cur.execute(sql)
          rows = cur.fetchall()
          for row in rows:
