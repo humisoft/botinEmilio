@@ -65,7 +65,7 @@ async def on_message(message):
          rows = cur.fetchall()
          for row in rows:
             #await client.send_message(message.channel, row[0])
-            msg = await client.send_message(message.channel, str(heart))
+            msg = await client.send_message(message.channel, str(:heart:))
             #msg = await client.send_message(message.channel, 'React with thumbs up or thumbs down.')
             res = await client.wait_for_reaction(['👍', '👎'], message=msg)
             await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
