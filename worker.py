@@ -49,10 +49,11 @@ async def on_message(message):
 
     # BD Select 
     try:
-        if "t!botin" in message.content:
-         DATABASE_URL = os.environ['DATABASE_URL']
+        DATABASE_URL = os.environ['DATABASE_URL']
 
-         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        if "t!botin" in message.content:
+
          cur=conn.cursor()
          sql = """select * from giftable;"""
          cur.execute(sql)
