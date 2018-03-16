@@ -65,9 +65,9 @@ async def on_message(message):
          rows = cur.fetchall()
          for row in rows:
             #await client.send_message(message.channel, row[0])
-			msg = await client.send_message(message.channel, 'React with thumbs up or thumbs down.')
-			res = await client.wait_for_reaction(['👍', '👎'], message=msg)
-			await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+            msg = await client.send_message(message.channel, 'React with thumbs up or thumbs down.')
+            res = await client.wait_for_reaction(['👍', '👎'], message=msg)
+            await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
