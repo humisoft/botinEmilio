@@ -50,16 +50,16 @@ async def on_message(message):
     # BD Select 
     try:
         if "t!botin" in message.content:
-        DATABASE_URL = os.environ['DATABASE_URL']
+         DATABASE_URL = os.environ['DATABASE_URL']
 
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        cur=conn.cursor()
-        sql = """select * from giftable;"""
-        cur.execute(sql)
-        rows = cur.fetchall()
-        for row in rows:
+         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+         cur=conn.cursor()
+         sql = """select * from giftable;"""
+         cur.execute(sql)
+         rows = cur.fetchall()
+         for row in rows:
             await client.send_message(message.channel, row)
-        cur.close()
+         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
