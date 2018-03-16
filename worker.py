@@ -53,8 +53,8 @@ async def on_message(message):
 
 	# BD Select
 		#conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'") 
-		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-	    cur = conn.cursor()
+		conn=psycopg2.connect(url, sslmode='require')
+	    cur=conn.cursor()
 	    cur.execute("SELECT url from giftable")
         #print("fila: ", cur.rowcount)
         rows = cur.fetchall()
