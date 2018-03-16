@@ -4,6 +4,8 @@ import os
 import random
 import time
 import json
+import asyncio
+import asyncpg
 import bd.py
 
 #from tinydb import TinyDB, Query
@@ -44,14 +46,18 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select
+	try:
 	cur = conn.cursor();
-	cur.execute("SELECT * from giftable")
+	cur.execute("SELECT url from giftable limit 1")
         #print("fila: ", cur.rowcount)
         row = cur.fetchone()
- 
-        while row is not None:
-            await client.send_message(message.channel,row)
-            row = cur.fetchone()
+        await client.send_message(message.channel,row)
+     except:
+        await client.send_message(message.channel,content='error al conectar la BD')
+        
+        #while row is not None:
+        #    await client.send_message(message.channel,row)
+        #    row = cur.fetchone()
  
 		cur.close()
 	
