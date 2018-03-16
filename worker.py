@@ -59,7 +59,7 @@ async def on_message(message):
          cur.execute(sql)
          rows = cur.fetchall()
          for row in rows:
-            await client.send_message(message.channel, row)
+            await client.send_message(message.channel, row[0])
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
