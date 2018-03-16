@@ -49,7 +49,7 @@ async def on_message(message):
 
     # BD Select 
     try:
-    if "t!botin" in message.content:
+        if "t!botin" in message.content:
         DATABASE_URL = os.environ['DATABASE_URL']
 
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
