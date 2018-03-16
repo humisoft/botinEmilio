@@ -46,7 +46,7 @@ async def on_message(message):
 	# BD Select
 	cur = conn.cursor();
 	cur.execute("SELECT * from giftable")
-        print("fila: ", cur.rowcount)
+        #print("fila: ", cur.rowcount)
         row = cur.fetchone()
  
         while row is not None:
