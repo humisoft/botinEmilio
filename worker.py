@@ -70,10 +70,10 @@ async def on_message(message):
             await client.add_reaction(msg, '👎')
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             if rea == '👍':
-                edit = await client.edit_message(msg, "editado")
+                edit = await client.edit_message(msg, "editadooo")
                 
             else:
-                edit = await client.edit_message(msg, row[0])
+                edit = await client.edit_message(msg, "noeditado")
             
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
