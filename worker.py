@@ -6,9 +6,12 @@ import time
 import json
 import asyncio
 import asyncpg
-import bd.py
+#import bd.py
 import psycopg2
 from urllib import parse
+
+parse.uses_netloc.append("postgres")
+url = parse.urlparse(os.environ["DATABASE_URL"])
 
 #from tinydb import TinyDB, Query
 
@@ -48,19 +51,31 @@ async def on_message(message):
 	#db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
 	# BD Select
+	if "t!prueba" in message.content:
+	conn = None
+    try:
 		#conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'") 
-		conn = psycopg2.connect(database=url.path[1:], user=url.username, password=url.password, host=url.hostname, port=url.port)   
+		conn = psycopg2.connect(
+			database=url.path[1:],
+			user=url.username,
+			password=url.password,
+			host=url.hostname,
+			port=url.port
+		) 
 	    cur = conn.cursor()
-	    cur.execute("""SELECT url from giftable limit 1""")
+	    cur.execute("SELECT url from giftable")
         #print("fila: ", cur.rowcount)
-        row = cur.fetchall()
-        await client.send_message(message.channel, row[0])
-        #while row is not None:
-        #    await client.send_message(message.channel,row)
-        #    row = cur.fetchone()
- 
-		cur.close()
-	
+        rows = cur.fetchall()
+		for row in rows:
+            await client.send_message(message.channel, row)
+        cur.close()
+
+		
+	except (Exception, psycopg2.DatabaseError) as error:
+        #print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 
 	# if "t!sami" in message.content:
 		# await client.send_typing(message.channel)
