@@ -68,9 +68,13 @@ async def on_message(message):
             msg = await client.send_message(message.channel, row[0])
             await client.add_reaction(msg, '👍')
             await client.add_reaction(msg, '👎')
-            #msg = await client.send_message(message.channel, 'React with thumbs up or thumbs down.')
-            res = await client.wait_for_reaction(['👍', '👎'], message=msg)
-            await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+            rea = get_reaction_users(reaction, limit=1, after=279395402606706688)
+            if rea = '👍':
+                edit = await client.edit_message(msg, row[0])
+                
+            else:
+                edit = await client.edit_message(msg, row[0])
+            
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
