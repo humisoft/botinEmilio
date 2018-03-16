@@ -9,6 +9,7 @@ import asyncio
 #import bd.py
 import os
 import psycopg2
+from psycopg2.extensions import AsIs
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
