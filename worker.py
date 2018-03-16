@@ -61,7 +61,7 @@ async def on_message(message):
          #print("esto es el select: "+sql)
          #cur.execute(sql, params)
          #cur.execute("""SELECT url FROM giftable where tag like %s order by random() limit 1;""", ('%' + buscar + '%'))
-         cur.execute("""SELECT url FROM giftable where tag like '''%%%s%%''' ;""", (AsIs(buscar),))
+         cur.execute("""SELECT url FROM giftable where tag like %%%s%% ;""", (AsIs('buscar'),))
          rows = cur.fetchall()
          for row in rows:
             await client.send_message(message.channel, row[0])
