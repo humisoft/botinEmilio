@@ -11,6 +11,7 @@ import psycopg2
 from urllib import parse
 
 parse.uses_netloc.append("postgres")
+DATABASE_URL = os.environ['DATABASE_URL']
 url = parse.urlparse(os.environ["DATABASE_URL"])
 
 #from tinydb import TinyDB, Query
@@ -55,13 +56,7 @@ async def on_message(message):
 	conn = None
     try:
 		#conn=psycopg2.connect("database='url.path[1:]' user='url.username' password='url.password' host='url.hostname' port='url.port'") 
-		conn = psycopg2.connect(
-			database=url.path[1:],
-			user=url.username,
-			password=url.password,
-			host=url.hostname,
-			port=url.port
-		) 
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	    cur = conn.cursor()
 	    cur.execute("SELECT url from giftable")
         #print("fila: ", cur.rowcount)
