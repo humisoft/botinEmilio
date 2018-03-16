@@ -49,7 +49,7 @@ async def on_message(message):
 	# BD Select 
 	try:
 		cur=conn.cursor()
-	    cur.execute("""SELECT url from giftable""")
+	    cur.execute("""SELECT url from giftable""");
         #print("fila: ", cur.rowcount)
         rows = cur.fetchall()
 		for row in rows:
