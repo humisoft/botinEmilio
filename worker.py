@@ -50,7 +50,7 @@ async def on_message(message):
          args = message.content.split(" ")
          #del args[0]
          cur=conn.cursor()
-         sql = """SELECT url FROM giftable where tag like '%(args)%' order by random() limit 1;"""
+         sql = """SELECT url FROM giftable where tag like '%%(args)s%' order by random() limit 1;"""
          cur.execute(sql)
          rows = cur.fetchall()
          for row in rows:
