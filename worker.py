@@ -48,32 +48,21 @@ async def on_message(message):
 
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         if message.content.startswith('t!botin'):
-         #print("esto es message"+message.content)
          args = message.content.split(" ")
-         #print("esto es args 0 con todo"+args[0])
          del args[0]
-         #print("esto es args 0 sin el 0"+args[0])
          buscar = ' '.join(args)
-         #print("esto es el args en buscar todo string"+buscar)
          cur=conn.cursor()
-         #sql = """SELECT url FROM giftable where tag like '%%%s%%' order by random() limit 1;"""
-         #params = (buscar)
-         #print("esto es el select: "+sql)
-         #cur.execute(sql, params)
-         #cur.execute("""SELECT url FROM giftable where tag like %s order by random() limit 1;""", ('%' + buscar + '%'))
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1;""", (AsIs(buscar),))
          rows = cur.fetchall()
          for row in rows:
-            #await client.send_message(message.channel, row[0])
             msg = await client.send_message(message.channel, row[0])
-            await client.add_reaction(msg, '👍')
-            await client.add_reaction(msg, '👎')
-            rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            if rea == '👍':
-                edit = await client.edit_message(msg, "editadooo")
-                
-            else:
-                edit = await client.edit_message(msg, "noeditado")
+            #await client.add_reaction(msg, '👍')
+            #await client.add_reaction(msg, '👎')
+            #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
+            #if rea == '👍':
+            #    edit = await client.edit_message(msg, "editadooo")    
+            #else:
+            #    edit = await client.edit_message(msg, "noeditado")
             
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
