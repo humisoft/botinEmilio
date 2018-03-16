@@ -35,7 +35,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    listen_owner_commands(message)
+    #listen_owner_commands(message)
     
     #print(countIterable(client.messages))
     #print(message.author)
