@@ -46,7 +46,7 @@ async def on_message(message):
         DATABASE_URL = os.environ['DATABASE_URL']
 
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        if "t!botin" in message.content:
+        if message.content.startswith('t!botin'):
 
          cur=conn.cursor()
          sql = """select url from giftable order by random() limit 1;"""
