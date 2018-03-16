@@ -55,11 +55,12 @@ async def on_message(message):
          buscar = ' '.join(args)
          print("esto es el args en buscar todo string"+buscar)
          cur=conn.cursor()
-         sql = """SELECT url FROM giftable where tag like '%%%s%%' order by random() limit 1;"""
-         params = (buscar)
+         #sql = """SELECT url FROM giftable where tag like '%%%s%%' order by random() limit 1;"""
+         #params = (buscar)
          #print("esto es el select: "+sql)
-         cur.execute(sql, params)
+         #cur.execute(sql, params)
          #cur.execute("""SELECT url FROM giftable where tag like %s order by random() limit 1;""", ('%' + buscar + '%'))
+         cur.execute("""SELECT url FROM giftable where tag like %s """, (AsIs(schema), each['buscar']))
          rows = cur.fetchall()
          for row in rows:
             await client.send_message(message.channel, row[0])
