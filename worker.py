@@ -55,7 +55,7 @@ async def on_message(message):
         if "t!botin" in message.content:
 
          cur=conn.cursor()
-         sql = """select * from giftable;"""
+         sql = """select * from giftable order by random() limit 1;"""
          cur.execute(sql)
          rows = cur.fetchall()
          for row in rows:
