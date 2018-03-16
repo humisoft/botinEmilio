@@ -48,8 +48,8 @@ async def on_message(message):
     #db.insert({'author': str(messageAuthor), 'channel': str(messageChannel), 'timestamp': str(messageTimestamp)})
 
     # BD Select 
-    if "t!botin" in message.content:
     try:
+    if "t!botin" in message.content:
         DATABASE_URL = os.environ['DATABASE_URL']
 
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
