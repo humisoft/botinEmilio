@@ -47,7 +47,7 @@ async def on_message(message):
 
 	# BD Select
 	try:
-	cur = conn.cursor();
+	cur = conn.cursor()
 	cur.execute("SELECT url from giftable limit 1")
         #print("fila: ", cur.rowcount)
         row = cur.fetchall()
