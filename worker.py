@@ -10,7 +10,6 @@ import asyncio
 import os
 import psycopg2
 
-
 #from tinydb import TinyDB, Query
 
 # INFORMATION:
