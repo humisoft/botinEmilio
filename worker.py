@@ -55,6 +55,8 @@ async def on_message(message):
          if rea == '↔':
             rand = randint(0, len(rows))
             newMsg = rows[0][rand]
+            print("rand : "+rand)
+            print("newmsg : "+newMsg)
             edit = await client.edit_message(msg, newMsg)    
          #for row in rows:
             #msg = await client.send_message(message.channel, row[0])
