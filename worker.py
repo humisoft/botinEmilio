@@ -52,7 +52,8 @@ async def on_message(message):
          msg = await client.send_message(message.channel, rows[0][0])
          await client.add_reaction(msg, '👍')
          rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-         print("fuera hijoputa"+get_all_emojis())
+         emo = client.get_all_emojis();
+         print("fuera hijoputa"+emo)
          if rea == '👍':
             rand = randint(0, 2)
             newMsg = rows[0][rand]
