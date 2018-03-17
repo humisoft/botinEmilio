@@ -49,7 +49,7 @@ async def on_message(message):
          cur=conn.cursor()
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
-         msg = await client.send_message(message.channel, rows[0])
+         msg = await client.send_message(message.channel, rows[0][0])
          await client.add_reaction(msg, 'U+27A1')
          await client.add_reaction(msg, 'U+2B05')
          #for row in rows:
