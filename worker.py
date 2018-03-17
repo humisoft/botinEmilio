@@ -50,11 +50,12 @@ async def on_message(message):
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
          msg = await client.send_message(message.channel, rows[0])
-         
+         await client.add_reaction(msg, 'U+27A1')
+         await client.add_reaction(msg, 'U+2B05')
          #for row in rows:
             #msg = await client.send_message(message.channel, row[0])
-            #await client.add_reaction(msg, '👍')
-            #await client.add_reaction(msg, '👎')
+            #await client.add_reaction(msg, 'U+27A1')
+            #await client.add_reaction(msg, 'U+2B05')
             #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             #if rea == '👍':
             #    edit = await client.edit_message(msg, "editadooo")    
