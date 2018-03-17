@@ -42,7 +42,7 @@ async def on_message(message):
         DATABASE_URL = os.environ['DATABASE_URL']
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         
-		if message.content.startswith('t!botin'):
+        if message.content.startswith('t!botin'):
          args = message.content.split(" ")
          del args[0]
          buscar = ' '.join(args)
