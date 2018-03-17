@@ -1,12 +1,8 @@
 import discord
 import asyncio
-#import os
 import random
 import time
 import json
-import asyncio
-#import asyncpg
-#import bd.py
 import os
 import psycopg2
 from psycopg2.extensions import AsIs
@@ -27,7 +23,6 @@ async def on_ready():
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
-    print('Bot status: ' + str(bot_status))
     print('------')
 
 
@@ -42,20 +37,22 @@ async def on_message(message):
     messageChannel = message.channel
     messageTimestamp = message.timestamp
 
-    # BD Select 
+    #BD 
     try:
         DATABASE_URL = os.environ['DATABASE_URL']
-
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        if message.content.startswith('t!botin'):
+        
+		if message.content.startswith('t!botin'):
          args = message.content.split(" ")
          del args[0]
          buscar = ' '.join(args)
          cur=conn.cursor()
-         cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1;""", (AsIs(buscar),))
+         cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
-         for row in rows:
-            msg = await client.send_message(message.channel, row[0])
+         msg = await client.send_message(message.channel, row[0])
+         
+         #for row in rows:
+            #msg = await client.send_message(message.channel, row[0])
             #await client.add_reaction(msg, '👍')
             #await client.add_reaction(msg, '👎')
             #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
