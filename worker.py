@@ -53,7 +53,8 @@ async def on_message(message):
          await client.add_reaction(msg, '👍')
          rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
          if rea == '👍':
-            rand = randint(0, len(rows))
+            print("entra hijoputa")
+            rand = randint(0, 2)
             newMsg = rows[0][rand]
             print("rand : "+rand)
             print("newmsg : "+newMsg)
