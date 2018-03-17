@@ -51,6 +51,9 @@ async def on_message(message):
          rows = cur.fetchall()
          msg = await client.send_message(message.channel, rows[0][0])
          await client.add_reaction(msg, '↔')
+         rea = client.get_reaction_users('↔', limit=1, after=279395402606706688)
+            if rea == '↔':
+                edit = await client.send_message(message.channel, rows[0][randint(0, len(rows))])    
          #for row in rows:
             #msg = await client.send_message(message.channel, row[0])
             #await client.add_reaction(msg, 'U+27A1')
