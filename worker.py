@@ -53,7 +53,8 @@ async def on_message(message):
          rea = await client.add_reaction(msg, '👍')
          rea = await client.wait_for_reaction(['👍'], message=rea)
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-         print ('rea')
+         await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(rea))
+         print (rea)
          if rea is '👍':
             rand = randint(0, 2)
             newMsg = rows[0][rand]
