@@ -50,7 +50,7 @@ async def on_message(message):
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
          #bueno#
-         ###msg = await client.send_message(message.channel, rows[0][0])
+         msg = await client.send_message(message.channel, rows[0][0])
          ###reac = await client.add_reaction(msg, '👍')
          ###rea = await client.wait_for_reaction(['👍'], message=reac)
          #termina bueno#
