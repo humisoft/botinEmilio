@@ -50,10 +50,11 @@ async def on_message(message):
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
          msg = await client.send_message(message.channel, rows[0][0])
-         reac = await client.add_reaction(msg, '👍')
-         rea = await client.wait_for_reaction(['👍'], message=reac)
+         rea = await client.add_reaction(msg, '👍')
+         rea = await client.wait_for_reaction(['👍'], message=rea)
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-         if cache_rea is '👍':
+         print ('rea')
+         if rea is '👍':
             rand = randint(0, 2)
             newMsg = rows[0][rand]
             print("rand : "+rand)
