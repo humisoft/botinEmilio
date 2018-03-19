@@ -51,7 +51,8 @@ async def on_message(message):
          rows = cur.fetchall()
          msg = await client.send_message(message.channel, rows[0][0])
          await client.add_reaction(msg, '👍')
-         rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
+         rea = await client.wait_for_reaction(['👍'], message=msg)
+         #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
          if rea == '👍':
             rand = randint(0, 2)
             newMsg = rows[0][rand]
