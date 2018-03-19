@@ -58,7 +58,7 @@ async def on_message(message):
          await bot.add_reaction(rea,'👎')
          await bot.add_reaction(rea,'👍')
          await asyncio.sleep(5)
-         cache_rea = discord.utils.get(bot.messages, id=rea.id)
+         cache_rea = discord.utils.get(on_message, id=rea.id)
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
          if cache_rea is '👍':
             rand = randint(0, 2)
