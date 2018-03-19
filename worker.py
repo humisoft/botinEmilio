@@ -55,7 +55,7 @@ async def on_message(message):
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
          await asyncio.sleep(10)
          await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(rea))
-         emojicono = '{0.reaction.emoji}'
+         emojicono = {0.reaction.emoji}
          print (emojicono)
          if emojicono is '👍':
             rand = randint(0, 2)
