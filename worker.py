@@ -54,9 +54,9 @@ async def on_message(message):
          ###reac = await client.add_reaction(msg, '👍')
          ###rea = await client.wait_for_reaction(['👍'], message=reac)
          #termina bueno#
-         rea = await bot.send_message(msg.message.channel,'Te gusta?')
-         await bot.add_reaction(rea,'👎')
-         await bot.add_reaction(rea,'👍')
+         rea = await client.send_message(msg.message.channel,'Te gusta?')
+         await client.add_reaction(rea,'👎')
+         await client.add_reaction(rea,'👍')
          await asyncio.sleep(5)
          cache_rea = discord.utils.get(on_message, id=rea.id)
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
