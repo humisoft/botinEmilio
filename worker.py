@@ -49,16 +49,9 @@ async def on_message(message):
          cur=conn.cursor()
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
-         #bueno#
          msg = await client.send_message(message.channel, rows[0][0])
-         ###reac = await client.add_reaction(msg, '👍')
-         ###rea = await client.wait_for_reaction(['👍'], message=reac)
-         #termina bueno#
-         rea = await client.send_message(msg.message.channel,'Te gusta?')
-         await client.add_reaction(msg,'👎')
-         await client.add_reaction(msg,'👍')
-         await asyncio.sleep(5)
-         cache_rea = discord.utils.get(on_message, id=rea.id)
+         reac = await client.add_reaction(msg, '👍')
+         rea = await client.wait_for_reaction(['👍'], message=reac)
          #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
          if cache_rea is '👍':
             rand = randint(0, 2)
