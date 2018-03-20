@@ -77,7 +77,9 @@ async def on_message(message):
             await client.add_reaction(msg, '👎')
             await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            pprint.pprint(rea.reaction.emoji)
+            lis = list(rea)
+            for i in lis:
+                print(i)
             # if rea == '👍':
                # edit = await client.edit_message(msg, "editadooo")    
             # else:
