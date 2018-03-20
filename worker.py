@@ -67,17 +67,20 @@ async def on_message(message):
          # else:
             # await client.send_message(message.channel, 'no reaccion')
             # print("no reaccion")
+         
+         
+         
          for row in rows:
             msg = await client.send_message(message.channel, row[0])
             await client.add_reaction(msg, '👍')
             await client.add_reaction(msg, '👎')
             await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            print("esto es el rea"+str(rea))
-            if rea.reaction.emoji == '👍':
-               edit = await client.edit_message(msg, "editadooo")    
-            else:
-               edit = await client.edit_message(msg, "noeditado")
+            pprint.pprint(rea.__dict__)
+            # if rea == '👍':
+               # edit = await client.edit_message(msg, "editadooo")    
+            # else:
+               # edit = await client.edit_message(msg, "noeditado")
             
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
