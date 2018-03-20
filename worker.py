@@ -47,7 +47,7 @@ async def on_message(message):
          del args[0]
          buscar = ' '.join(args)
          cur=conn.cursor()
-         cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
+         cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1;""", (AsIs(buscar),))
          rows = cur.fetchall()
          # msg = await client.send_message(message.channel, rows[0][0])
          # await client.add_reaction(msg, '👍')
@@ -71,6 +71,7 @@ async def on_message(message):
             msg = await client.send_message(message.channel, row[0])
             await client.add_reaction(msg, '👍')
             await client.add_reaction(msg, '👎')
+            await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             if rea == '👍':
                edit = await client.edit_message(msg, "editadooo")    
