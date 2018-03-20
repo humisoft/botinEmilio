@@ -73,7 +73,8 @@ async def on_message(message):
             await client.add_reaction(msg, '👎')
             await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            if rea = '👍':
+            print("esto es el rea"+rea)
+            if rea.reaction.emoji == '👍':
                edit = await client.edit_message(msg, "editadooo")    
             else:
                edit = await client.edit_message(msg, "noeditado")
