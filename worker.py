@@ -77,7 +77,7 @@ async def on_message(message):
             await client.add_reaction(msg, '👎')
             await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            print('{0.reaction.emoji}!'.format(rea))
+            print('{0}!'.format(rea))
             # lis = list(rea)
             # for i in lis:
                 # print("esto es: "+i)
