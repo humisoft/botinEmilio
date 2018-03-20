@@ -49,33 +49,33 @@ async def on_message(message):
          cur=conn.cursor()
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random();""", (AsIs(buscar),))
          rows = cur.fetchall()
-         msg = await client.send_message(message.channel, rows[0][0])
-         await client.add_reaction(msg, '👍')
-         await client.add_reaction(msg, '👎')
-         await client.wait_for_reaction(['👍', '👎'], message=msg)
-         await asyncio.sleep(10)
-         res = client.get_reaction_users('👍')
-         await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
-         if rea == True:
-            print("si reaccion")
-            await client.send_message(message.channel, 'si reaccion')
-            rand = randint(0, 2)
-            newMsg = rows[0][rand]
-            print("rand : "+rand)
-            print("newmsg : "+newMsg)
-            edit = await client.edit_message(msg, newMsg) 
-         else:
-            await client.send_message(message.channel, 'no reaccion')
-            print("no reaccion")
-         #for row in rows:
-            #msg = await client.send_message(message.channel, row[0])
-            #await client.add_reaction(msg, 'U+27A1')
-            #await client.add_reaction(msg, 'U+2B05')
-            #rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
-            #if rea == '👍':
-            #    edit = await client.edit_message(msg, "editadooo")    
-            #else:
-            #    edit = await client.edit_message(msg, "noeditado")
+         # msg = await client.send_message(message.channel, rows[0][0])
+         # await client.add_reaction(msg, '👍')
+         # await client.add_reaction(msg, '👎')
+         # await client.wait_for_reaction(['👍', '👎'], message=msg)
+         # await asyncio.sleep(10)
+         # res = client.get_reaction_users('👍')
+         # await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+         # if rea == True:
+            # print("si reaccion")
+            # await client.send_message(message.channel, 'si reaccion')
+            # rand = randint(0, 2)
+            # newMsg = rows[0][rand]
+            # print("rand : "+rand)
+            # print("newmsg : "+newMsg)
+            # edit = await client.edit_message(msg, newMsg) 
+         # else:
+            # await client.send_message(message.channel, 'no reaccion')
+            # print("no reaccion")
+         for row in rows:
+            msg = await client.send_message(message.channel, row[0])
+            await client.add_reaction(msg, '👍'
+            await client.add_reaction(msg, '👎'))
+            rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
+            if rea == '👍':
+               edit = await client.edit_message(msg, "editadooo")    
+            else:
+               edit = await client.edit_message(msg, "noeditado")
             
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
