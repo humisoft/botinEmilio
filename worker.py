@@ -54,7 +54,7 @@ async def on_message(message):
          await client.add_reaction(msg, '👎')
          await client.wait_for_reaction(['👍', '👎'], message=msg)
          await asyncio.sleep(10)
-         res = client.get_reaction_users('👍', limit=1, after=279395402606706688)
+         res = client.get_reaction_users('👍')
          await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
          if rea == True:
             print("si reaccion")
