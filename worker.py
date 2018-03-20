@@ -79,7 +79,7 @@ async def on_message(message):
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             lis = list(rea)
             for i in lis:
-                print(i)
+                print("esto es: "+i)
             # if rea == '👍':
                # edit = await client.edit_message(msg, "editadooo")    
             # else:
