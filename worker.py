@@ -78,7 +78,7 @@ async def on_message(message):
             await asyncio.sleep(5)
             rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             #print('{0}!'.format(rea))
-            print(vars(rea))
+            print(dir(rea))
             #pprint.pprint('{0.__dict__}!'.format(rea))
             # lis = list(rea)
             # for i in lis:
