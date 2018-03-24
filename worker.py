@@ -38,32 +38,47 @@ async def on_message(message):
      args = message.content.split(" ")
      del args[0]
      buscar = ' '.join(args)
-     
-     msg = await client.send_message(message.channel, mensaj(buscar))
-     await client.add_reaction(msg, '👍')
-     await client.add_reaction(msg, '👎')
+     cantidad = canti(buscar)
+     msg = await client.send_message(message.channel, mensaj(buscar,0))
+     await client.add_reaction(msg, '🔃')
      
      def check(reaction, user):
-        if reaction.count != 1 and reaction.emoji == '👍':
+        if reaction.count != 1 and reaction.emoji == '🔃':
             return 1
-             #return mensaj(buscar)
-             #edit = await client.edit_message(msg, rows[0][1])
         return 0
      res = await client.wait_for_reaction(message=msg, check=check)
-     await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
-     #await client.edit_message(msg, check=check)
-     if '{0.reaction.emoji}'.format(res) == '👍':
-      await client.edit_message(msg, 'editadooo')
+     #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+     if '{0.reaction.emoji}'.format(res) == '🔃':
+      ran = randint(0,cantidad)
+      await client.edit_message(msg, mensaj(buscar,ran)
             
-def mensaj(buscar):
+def mensaj(buscar, num):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1""", (AsIs(buscar),))
+     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
      rows = cur.fetchall()
-     resultado = str(rows[0][0])
+     resultado = rows[0][num]
+     return resultado
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            
+def canti(buscar):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
+     rows = cur.fetchall()
+     resultado = len(rows)
      return resultado
      
      cur.close()
