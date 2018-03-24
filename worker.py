@@ -53,9 +53,9 @@ async def on_message(message):
      if '{0.reaction.emoji}'.format(res) == '🔃':
       ran = randint(0,cantidad)
       print("esto es random: " + str(ran))
-      await client.edit_message(msg, mensaj(buscar,1))
+      await client.edit_message(msg, mensaj(buscar,ran))
             
-def mensaj(buscar, num):
+def mensaj(buscar,num):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
@@ -63,7 +63,7 @@ def mensaj(buscar, num):
      cur=conn.cursor()
      cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
      rows = cur.fetchall()
-     resultado = rows[0][num]
+     resultado = rows[num][0]
      return resultado
      
      cur.close()
