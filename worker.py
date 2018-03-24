@@ -63,7 +63,8 @@ async def mensaj(buscar):
      cur=conn.cursor()
      cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1""", (AsIs(buscar),))
      rows = cur.fetchall()
-      return rows[0][0]
+     resultado = rows[0][0]
+     return resultado
      
      cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
