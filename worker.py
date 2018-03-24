@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import random
+from random import randint
 import time
 import json
 import os
