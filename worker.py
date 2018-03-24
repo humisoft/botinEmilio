@@ -53,7 +53,7 @@ async def on_message(message):
      if '{0.reaction.emoji}'.format(res) == '🔃':
       ran = randint(0,cantidad)
       print("esto es random: " + str(ran))
-      await client.edit_message(msg, mensaj(buscar,ran))
+      await client.edit_message(msg, mensaj(buscar,1))
             
 def mensaj(buscar, num):
     #BD 
