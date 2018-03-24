@@ -51,7 +51,7 @@ async def on_message(message):
         return 0
      res = await client.wait_for_reaction(message=msg, check=check)
      await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
-     await client.edit_message(msg, check=check)
+     #await client.edit_message(msg, check=check)
      if res == 1:
       await client.edit_message(msg, 'editadooo')
             
