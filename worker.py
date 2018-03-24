@@ -55,7 +55,7 @@ async def on_message(message):
 
    
             
-async def mensaj(buscar):
+def mensaj(buscar):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
