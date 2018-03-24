@@ -63,7 +63,7 @@ async def mensaj(buscar):
      cur=conn.cursor()
      cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1""", (AsIs(buscar),))
      rows = cur.fetchall()
-     resultado = rows[0][0]
+     resultado = str(rows[0][0])
      return resultado
      
      cur.close()
