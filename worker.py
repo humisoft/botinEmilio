@@ -44,7 +44,7 @@ async def on_message(message):
      await client.add_reaction(msg, '👎')
      
      def check(reaction, user):
-        if reaction.count != 1 && reaction.emoji == '👍':
+        if reaction.count != 1 and reaction.emoji == '👍':
             return 1
              #return mensaj(buscar)
              #edit = await client.edit_message(msg, rows[0][1])
