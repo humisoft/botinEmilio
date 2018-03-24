@@ -40,7 +40,7 @@ async def on_message(message):
      del args[0]
      buscar = ' '.join(args)
      cantidad = canti(buscar)
-     print('esto es cantidad: '+cantidad)
+     print('esto es cantidad: '.cantidad)
      msg = await client.send_message(message.channel, mensaj(buscar,0))
      await client.add_reaction(msg, '🔃')
      
@@ -52,7 +52,7 @@ async def on_message(message):
      #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
      if '{0.reaction.emoji}'.format(res) == '🔃':
       ran = randint(0,cantidad)
-      print('esto es random: '+ran)
+      print('esto es random: '.ran)
       await client.edit_message(msg, mensaj(buscar,ran))
             
 def mensaj(buscar, num):
