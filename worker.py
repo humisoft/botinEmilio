@@ -54,7 +54,7 @@ async def on_message(message):
       ran = randint(0,cantidad)
       print("esto es random: " + str(ran))
       await client.edit_message(msg, mensaj(buscar,ran))
-      await client.remove.reaction(msg, '🔃')
+      await client.remove_reaction(msg, '🔃')
       await client.add_reaction(msg, '🔃')
             
 def mensaj(buscar,num):
