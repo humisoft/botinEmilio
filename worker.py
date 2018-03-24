@@ -51,7 +51,7 @@ async def on_message(message):
      res = await client.wait_for_reaction(message=msg, check=check)
      #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
      if '{0.reaction.emoji}'.format(res) == '🔃':
-      ran = randint(0,cantidad)
+      ran = randint(0,cantidad-1)
       print("esto es random: " + str(ran))
       await client.edit_message(msg, mensaj(buscar,ran))
       await client.clear_reactions(msg)
