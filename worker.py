@@ -50,6 +50,17 @@ async def on_message(message):
          cur=conn.cursor()
          cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\' order by random() limit 1;""", (AsIs(buscar),))
          rows = cur.fetchall()
+         msg = await client.send_message(message.channel, rows[0][0])
+         await client.add_reaction(msg, '👍')
+         await client.add_reaction(msg, '👎')
+         
+         def check(reaction, user):
+            if reaction.count != 1:
+                return 1
+            return 0
+         res = await client.wait_for_reaction(message=msg, check=check)
+         await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+         
          # msg = await client.send_message(message.channel, rows[0][0])
          # await client.add_reaction(msg, '👍')
          # await client.add_reaction(msg, '👎')
@@ -69,16 +80,14 @@ async def on_message(message):
             # await client.send_message(message.channel, 'no reaccion')
             # print("no reaccion")
          
-         
-         
-         for row in rows:
-            msg = await client.send_message(message.channel, row[0])
-            await client.add_reaction(msg, '👍')
-            await client.add_reaction(msg, '👎')
-            await asyncio.sleep(5)
-            rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
+         # for row in rows:
+            # msg = await client.send_message(message.channel, row[0])
+            # await client.add_reaction(msg, '👍')
+            # await client.add_reaction(msg, '👎')
+            # await asyncio.sleep(5)
+            # rea = client.get_reaction_users('👍', limit=1, after=279395402606706688)
             #print('{0}!'.format(rea))
-            print(dir(rea))
+            #print(dir(rea))
             #pprint.pprint('{0.__dict__}!'.format(rea))
             # lis = list(rea)
             # for i in lis:
@@ -87,7 +96,6 @@ async def on_message(message):
                # edit = await client.edit_message(msg, "editadooo")    
             # else:
                # edit = await client.edit_message(msg, "noeditado")
-            
          cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
