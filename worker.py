@@ -56,12 +56,13 @@ async def on_message(message):
          
          def check(reaction, user):
             if reaction.count != 1:
+                if reaction.emoji == '👍':
+                 edit = await client.edit_message(msg, rows[0][1])
                 return 1
             return 0
          res = await client.wait_for_reaction(message=msg, check=check)
          await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
-         if reaction.emoji == '👍':
-            edit = await client.edit_message(msg, rows[0][1])
+         
             
          # msg = await client.send_message(message.channel, rows[0][0])
          # await client.add_reaction(msg, '👍')
