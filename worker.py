@@ -50,7 +50,7 @@ async def on_message(message):
      #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
      if '{0.reaction.emoji}'.format(res) == '🔃':
       ran = randint(0,cantidad)
-      await client.edit_message(msg, mensaj(buscar,ran)
+      await client.edit_message(msg, mensaj(buscar,ran))
             
 def mensaj(buscar, num):
     #BD 
