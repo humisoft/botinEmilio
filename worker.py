@@ -63,7 +63,7 @@ async def on_message(message):
      tags = ' '.join(args)
      await client.send_message(message.channel, meter(url,tags))
     else:
-     
+     print('---ELSE FINAL CANCER---')
         
         
 def mostrar(buscar,num):
