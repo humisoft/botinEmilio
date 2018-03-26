@@ -116,7 +116,7 @@ def actualizar(url, tags):
             conn.close()    
             
             
-def actualizar(url):
+def deletear(url):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
