@@ -35,13 +35,12 @@ async def on_message(message):
     messageChannel = message.channel
     messageTimestamp = message.timestamp
 
-    if message.content.startswith('t!botin'):
+    if message.content.startswith('t!gif'):
      args = message.content.split(" ")
      del args[0]
      buscar = ' '.join(args)
      cantidad = canti(buscar)
-     #print("esto es cantidad: " + str(cantidad))
-     msg = await client.send_message(message.channel, mensaj(buscar,0))
+     msg = await client.send_message(message.channel, mostrar(buscar,0))
      await client.add_reaction(msg, '🔃')
      
      while True:
@@ -50,16 +49,22 @@ async def on_message(message):
 	            return 1
 	        return 0
 	     res = await client.wait_for_reaction(message=msg, check=check)
-	     #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
 	     if '{0.reaction.emoji}'.format(res) == '🔃':
 	      ran = randint(0,cantidad-1)
-	      #print("esto es random: " + str(ran))
-	      await client.edit_message(msg, mensaj(buscar,ran))
+	      await client.edit_message(msg, mostrar(buscar,ran))
 	      await client.clear_reactions(msg)
-	      #await client.remove_reaction(msg, '🔃','{0.user}'.format(res))
 	      await client.add_reaction(msg, '🔃')
-            
-def mensaj(buscar,num):
+    elif message.content.startswith('t!gifadd'):
+	 args = message.content.split(" ")
+     del args[0]
+	 url = args[0]
+	 del args[0]
+	 tags = ' '.join(args)
+	 meter(url,args)
+     
+		
+		
+def mostrar(buscar,num):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
@@ -76,7 +81,27 @@ def mensaj(buscar,num):
     finally:
         if conn is not None:
             conn.close()
-            
+
+def meter(url, tags):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
+     rows = cur.fetchall()
+     resultado = "Se ha introducido el gif adecuadamente"
+     return resultado
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()	
+
+
+	
 def canti(buscar):
     #BD 
     try:
