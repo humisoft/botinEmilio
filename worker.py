@@ -44,7 +44,7 @@ async def on_message(message):
      msg = await client.send_message(message.channel, mensaj(buscar,0))
      await client.add_reaction(msg, '🔃')
      
-     while true:
+     while True:
 	     def check(reaction, user):
 	        if reaction.count != 1 and reaction.emoji == '🔃':
 	            return 1
