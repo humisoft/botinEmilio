@@ -55,7 +55,7 @@ async def on_message(message):
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
           
-    if message.content.startswith('t!gifadd'):
+    if message.content.startswith('t!creategif'):
      print('---ENTRA AL ELIF---')
      args = message.content.split(" ")
      del args[0]
