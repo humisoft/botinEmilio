@@ -62,6 +62,7 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      await client.send_message(message.channel, meter(url,tags))
+    else:
      
         
         
