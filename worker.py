@@ -69,7 +69,7 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      actualizar(url,tags)
-    if message.content.startswith('t!updategif'):
+    if message.content.startswith('t!deleteargif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
