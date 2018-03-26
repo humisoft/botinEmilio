@@ -44,26 +44,26 @@ async def on_message(message):
      await client.add_reaction(msg, '🔃')
      
      while True:
-	     def check(reaction, user):
-	        if reaction.count != 1 and reaction.emoji == '🔃':
-	            return 1
-	        return 0
-	     res = await client.wait_for_reaction(message=msg, check=check)
-	     if '{0.reaction.emoji}'.format(res) == '🔃':
-	      ran = randint(0,cantidad-1)
-	      await client.edit_message(msg, mostrar(buscar,ran))
-	      await client.clear_reactions(msg)
-	      await client.add_reaction(msg, '🔃')
+         def check(reaction, user):
+            if reaction.count != 1 and reaction.emoji == '🔃':
+                return 1
+            return 0
+         res = await client.wait_for_reaction(message=msg, check=check)
+         if '{0.reaction.emoji}'.format(res) == '🔃':
+          ran = randint(0,cantidad-1)
+          await client.edit_message(msg, mostrar(buscar,ran))
+          await client.clear_reactions(msg)
+          await client.add_reaction(msg, '🔃')
     elif message.content.startswith('t!gifadd'):
-	 args = message.content.split(" ")
+     args = message.content.split(" ")
      del args[0]
-	 url = args[0]
-	 del args[0]
-	 tags = ' '.join(args)
-	 meter(url,args)
+     url = args[0]
+     del args[0]
+     tags = ' '.join(args)
+     meter(url,tags)
      
-		
-		
+        
+        
 def mostrar(buscar,num):
     #BD 
     try:
@@ -88,7 +88,7 @@ def meter(url, tags):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
+     cur.execute("""INSERT INTO giftable (url, tag) VALUES (%%%s%%, %%%s%%);'""", (AsIs(url),AsIS(tags))
      rows = cur.fetchall()
      resultado = "Se ha introducido el gif adecuadamente"
      return resultado
@@ -98,10 +98,10 @@ def meter(url, tags):
         print(error)
     finally:
         if conn is not None:
-            conn.close()	
+            conn.close()    
 
 
-	
+    
 def canti(buscar):
     #BD 
     try:
