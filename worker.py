@@ -69,6 +69,11 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      actualizar(url,tags)
+    if message.content.startswith('t!updategif'):
+     args = message.content.split(" ")
+     del args[0]
+     url = args[0]
+     deletear(url)
      
 def mostrar(buscar,num):
     #BD 
@@ -109,6 +114,24 @@ def actualizar(url, tags):
     finally:
         if conn is not None:
             conn.close()    
+            
+            
+def actualizar(url):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""DELETE from giftable where url = \'%s\';""", (AsIs(url),))
+     conn.commit()
+     return True
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()  
             
             
 def meter(url, tags):
