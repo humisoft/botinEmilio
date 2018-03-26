@@ -62,9 +62,14 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      meter(url,tags)
-     #await client.send_message(message.channel, meter(url,tags))
-
-        
+    if message.content.startswith('t!updategif'):
+     args = message.content.split(" ")
+     del args[0]
+     url = args[0]
+     del args[0]
+     tags = ' '.join(args)
+     actualizar(url,tags)
+     
 def mostrar(buscar,num):
     #BD 
     try:
@@ -88,15 +93,14 @@ def mostrar(buscar,num):
         if conn is not None:
             conn.close()
 
-def meter(url, tags):
+def actualizar(url, tags):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""INSERT INTO giftable (url, tag) VALUES (\'%s\', \'%s\');""", (AsIs(url),AsIs(tags),))
+     cur.execute("""UPDATE giftable SET tag =\'%s\' where url = \'%s\');""", (AsIs(tags),AsIs(url),))
      conn.commit()
-     #resultado = "S e ha introducido el gif adecuadamente"
      return True
      
      cur.close()
@@ -105,6 +109,24 @@ def meter(url, tags):
     finally:
         if conn is not None:
             conn.close()    
+            
+            
+def meter(url, tags):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""INSERT INTO giftable (url, tag) VALUES (\'%s\', \'%s\');""", (AsIs(url),AsIs(tags),))
+     conn.commit()
+     return True
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()  
 
 
     
@@ -114,7 +136,11 @@ def canti(buscar):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
+     trozo1 = "SELECT url FROM giftable where tag like '%"
+     trozo2 = buscar
+     trozo3 = "%';"
+     consulta =  trozo1+trozo2+trozo3
+     cur.execute("""%s""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = len(rows)
      return resultado
