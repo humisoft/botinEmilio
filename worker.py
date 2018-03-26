@@ -38,7 +38,7 @@ async def on_message(message):
     if message.content.startswith('t!gif'):
      args = message.content.split(" ")
      del args[0]
-     buscar = '\'% and tag like %\''.join(args)
+     buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
      msg = await client.send_message(message.channel, mostrar(buscar,0))
      await client.add_reaction(msg, '🔃')
