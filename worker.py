@@ -62,7 +62,7 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     await client.send_message(message.channel, meter(url,tags))
+     #await client.send_message(message.channel, meter(url,tags))
 
         
 def mostrar(buscar,num):
@@ -91,9 +91,8 @@ def meter(url, tags):
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
      cur.execute("""INSERT INTO giftable (url, tag) VALUES (\'%s\', \'%s\');""", (AsIs(url),AsIs(tags),))
-     rows = cur.fetchall()
-     resultado = "Se ha introducido el gif adecuadamente"
-     return resultado
+     #resultado = "Se ha introducido el gif adecuadamente"
+     return True
      
      cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
