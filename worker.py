@@ -99,7 +99,7 @@ def actualizar(url, tags):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""UPDATE giftable SET tag =\'%s\' where url = \'%s\');""", (AsIs(tags),AsIs(url),))
+     cur.execute("""UPDATE giftable SET tag =\'%s\' where url = \'%s\';""", (AsIs(tags),AsIs(url),))
      conn.commit()
      return True
      
