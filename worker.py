@@ -71,9 +71,9 @@ def mostrar(buscar,num):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-	 trozo1 = "SELECT url FROM giftable where tag like"
-	 trozo2 = buscar
-	 trozo3 = "%;"
+     trozo1 = "SELECT url FROM giftable where tag like '%"
+     trozo2 = buscar
+     trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
      #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
