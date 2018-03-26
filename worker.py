@@ -38,7 +38,7 @@ async def on_message(message):
     if message.content.startswith('t!gif'):
      args = message.content.split(" ")
      del args[0]
-     buscar = ' '.join(args)
+     buscar = '% and tag like %'.join(args)
      cantidad = canti(buscar)
      msg = await client.send_message(message.channel, mostrar(buscar,0))
      await client.add_reaction(msg, '🔃')
@@ -56,7 +56,6 @@ async def on_message(message):
           await client.add_reaction(msg, '🔃')
           
     if message.content.startswith('t!creategif'):
-     print('---ENTRA AL ELIF---')
      args = message.content.split(" ")
      del args[0]
      url = args[0]
@@ -72,7 +71,9 @@ def mostrar(buscar,num):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(buscar),))
+     consulta = buscar
+     cur.execute("""%s""", (AsIs(consulta),))
+     #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = rows[num][0]
      return resultado
@@ -85,7 +86,6 @@ def mostrar(buscar,num):
             conn.close()
 
 def meter(url, tags):
-    print('---ENTRA A LA FUNCION METER---')
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
