@@ -38,7 +38,7 @@ async def on_message(message):
     if message.content.startswith('t!gif'):
      args = message.content.split(" ")
      del args[0]
-     buscar = '% and tag like %'.join(args)
+     buscar = '\'% and tag like %\''.join(args)
      cantidad = canti(buscar)
      msg = await client.send_message(message.channel, mostrar(buscar,0))
      await client.add_reaction(msg, '🔃')
@@ -71,7 +71,10 @@ def mostrar(buscar,num):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     consulta = buscar
+	 trozo1 = "SELECT url FROM giftable where tag like"
+	 trozo2 = buscar
+	 trozo3 = "%;"
+     consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
      #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
      rows = cur.fetchall()
