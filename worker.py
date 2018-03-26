@@ -44,19 +44,20 @@ async def on_message(message):
      msg = await client.send_message(message.channel, mensaj(buscar,0))
      await client.add_reaction(msg, '🔃')
      
-     def check(reaction, user):
-        if reaction.count != 1 and reaction.emoji == '🔃':
-            return 1
-        return 0
-     res = await client.wait_for_reaction(message=msg, check=check)
-     #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
-     if '{0.reaction.emoji}'.format(res) == '🔃':
-      ran = randint(0,cantidad-1)
-      #print("esto es random: " + str(ran))
-      await client.edit_message(msg, mensaj(buscar,ran))
-      await client.clear_reactions(msg)
-      #await client.remove_reaction(msg, '🔃','{0.user}'.format(res))
-      await client.add_reaction(msg, '🔃')
+     while true:
+	     def check(reaction, user):
+	        if reaction.count != 1 and reaction.emoji == '🔃':
+	            return 1
+	        return 0
+	     res = await client.wait_for_reaction(message=msg, check=check)
+	     #await client.send_message(message.channel, '{0.user} reacted with {0.reaction.emoji}!'.format(res))
+	     if '{0.reaction.emoji}'.format(res) == '🔃':
+	      ran = randint(0,cantidad-1)
+	      #print("esto es random: " + str(ran))
+	      await client.edit_message(msg, mensaj(buscar,ran))
+	      await client.clear_reactions(msg)
+	      #await client.remove_reaction(msg, '🔃','{0.user}'.format(res))
+	      await client.add_reaction(msg, '🔃')
             
 def mensaj(buscar,num):
     #BD 
