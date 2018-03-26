@@ -90,7 +90,7 @@ def meter(url, tags):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""INSERT INTO giftable (url, tag) VALUES (\"%%%s%%\", \"%%%s%%\");'""", (AsIs(url),AsIs(tags),))
+     cur.execute("""INSERT INTO giftable (url, tag) VALUES (\"%s\", \"%s\");'""", (AsIs(url),AsIs(tags),))
      rows = cur.fetchall()
      resultado = "Se ha introducido el gif adecuadamente"
      return resultado
