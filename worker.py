@@ -55,6 +55,7 @@ async def on_message(message):
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
     elif message.content.startswith('t!gifadd'):
+     print('---ENTRA AL ELIF---')
      args = message.content.split(" ")
      del args[0]
      url = args[0]
@@ -83,6 +84,7 @@ def mostrar(buscar,num):
             conn.close()
 
 def meter(url, tags):
+    print('---ENTRA A LA FUNCION METER---')
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
