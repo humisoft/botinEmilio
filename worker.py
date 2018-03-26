@@ -54,7 +54,8 @@ async def on_message(message):
           await client.edit_message(msg, mostrar(buscar,ran))
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
-    elif message.content.startswith('t!gifadd'):
+          
+    if message.content.startswith('t!gifadd'):
      print('---ENTRA AL ELIF---')
      args = message.content.split(" ")
      del args[0]
@@ -62,9 +63,7 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      await client.send_message(message.channel, meter(url,tags))
-    else:
-     print('---ELSE FINAL CANCER---')
-        
+
         
 def mostrar(buscar,num):
     #BD 
