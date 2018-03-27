@@ -80,7 +80,8 @@ async def on_message(message):
     if message.content.startswith('.infogif'):
      args = message.content.split(" ")
      del args[0]
-     soloUr = args[0]
+     soloU = args[0]
+     soloUr = ''.join(soloU)
      del args[0]
      soloTags = ' '.join(args)
      em = discord.Embed(title='Gif', url=soloUr, description=soloTags, color=0xff0000)
