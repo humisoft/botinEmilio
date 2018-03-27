@@ -55,7 +55,9 @@ async def on_message(message):
          res = await client.wait_for_reaction(message=msg, check=check)
          if '{0.reaction.emoji}'.format(res) == '🔃':
           ran = randint(0,cantidad-1)
-          await client.edit_message(msg, infoUrl(buscar,ran))
+          em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
+          em2.set_image(url=infoUrl(buscar,ran))
+          await client.edit_message(msg, embed=em2)
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
           
