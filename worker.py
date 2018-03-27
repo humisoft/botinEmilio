@@ -79,7 +79,7 @@ async def on_message(message):
      url = args[0]
      deletear(url)
     if message.content.startswith('.help'):
-     help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description=Botin, color=0xff0000)
+     help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description='Botin', color=0xff0000)
      help.set_image(url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg')
      help.add_field(name='Mostrar Gif', value='.gif tags', inline=True)
      help.add_field(name='Guardar Gif', value='.creategif url tags', inline=True)
