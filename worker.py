@@ -83,8 +83,8 @@ async def on_message(message):
      soloUr = args[0]
      del args[0]
      soloTags = ' '.join(args)
-     em = discord.Embed(title='Gif', url=\'soloUr\', description=\'soloTags\', color=0xff0000)
-     em.set_image(url=\'soloUr\')
+     em = discord.Embed(title='Gif', url=soloUr, description=soloTags, color=0xff0000)
+     em.set_image(url=soloUr)
      await client.send_message(message.channel, embed=em)
      
 def mostrar(buscar,num):
