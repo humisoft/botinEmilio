@@ -40,9 +40,7 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     soloTag = ''.join(args)
-     #msg = await client.send_message(message.channel, infoUrl(buscar,0))
-     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
+     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000,width=700)
      em.set_image(url=infoUrl(buscar,0))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
@@ -84,32 +82,6 @@ async def on_message(message):
      helpmsg = "ayuda"
      await client.send_message(message.channel, helpmsg)
      
-     
-     
-     
-# def mostrar(buscar,num):
-    # #BD 
-    # try:
-     # DATABASE_URL = os.environ['DATABASE_URL']
-     # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-     # cur=conn.cursor()
-     # trozo1 = "SELECT url FROM giftable where tag like '%"
-     # trozo2 = buscar
-     # trozo3 = "%';"
-     # consulta =  trozo1+trozo2+trozo3
-     # cur.execute("""%s""", (AsIs(consulta),))
-     # #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
-     # rows = cur.fetchall()
-     # resultado = rows[num][0]
-     # return resultado
-     
-     # cur.close()
-    # except (Exception, psycopg2.DatabaseError) as error:
-        # print(error)
-    # finally:
-        # if conn is not None:
-            # conn.close()
-            
             
 def infoUrl(buscar,num):
     #BD 
@@ -122,7 +94,6 @@ def infoUrl(buscar,num):
      trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
-     #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = rows[num][0]
      return resultado
@@ -146,7 +117,6 @@ def infoTag(buscar,num):
      trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
-     #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = rows[num][0]
      return resultado
