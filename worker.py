@@ -78,7 +78,7 @@ async def on_message(message):
      url = args[0]
      deletear(url)
     if message.content.startswith('.help'):
-     helpmsg = 
+     helpmsg = "ayuda"
      await client.send_message(message.channel, helpmsg)
      
 def mostrar(buscar,num):
