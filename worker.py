@@ -35,12 +35,15 @@ async def on_message(message):
     messageChannel = message.channel
     messageTimestamp = message.timestamp
 
-    if message.content.startswith('t!gif'):
+    if message.content.startswith('.gif'):
      args = message.content.split(" ")
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
      msg = await client.send_message(message.channel, mostrar(buscar,0))
+     embed=discord.Embed(title=args, url=mostrar(buscar,0), description=tags, color=0xff0000)
+     embed.set_thumbnail(url=mostrar(buscar,0))
+     await self.bot.say(embed=embed)
      await client.add_reaction(msg, '🔃')
      
      while True:
@@ -55,25 +58,28 @@ async def on_message(message):
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
           
-    if message.content.startswith('t!creategif'):
+    if message.content.startswith('.creategif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
      del args[0]
      tags = ' '.join(args)
      meter(url,tags)
-    if message.content.startswith('t!updategif'):
+    if message.content.startswith('.updategif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
      del args[0]
      tags = ' '.join(args)
      actualizar(url,tags)
-    if message.content.startswith('t!deleteargif'):
+    if message.content.startswith('.deleteargif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
      deletear(url)
+    if message.content.startswith('.help'):
+     helpmsg = 
+     await client.send_message(message.channel, helpmsg)
      
 def mostrar(buscar,num):
     #BD 
