@@ -83,10 +83,9 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     embed=discord.Embed(title="Gif", url=url, description=tags, color=0xff0000)
-     embed.set_thumbnail(url=url)
-     embed.add_field(name=undefined, value=undefined, inline=False)
-     await client.send_message(message.channel,embed)
+     em = discord.Embed(title="Gif", url=url, description=tags, color=0xff0000)
+     em.set_image(url=url)
+     await client.send_message(message.channel,embed=em)
      
 def mostrar(buscar,num):
     #BD 
