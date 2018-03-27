@@ -41,7 +41,7 @@ async def on_message(message):
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
      msg = await client.send_message(message.channel, mostrar(buscar,0))
-     embed=discord.Embed(title=args, url=mostrar(buscar,0), description=tags, color=0xff0000)
+     embed=discord.Embed(title=args[0], url=mostrar(buscar,0), description=tags, color=0xff0000)
      embed.set_thumbnail(url=mostrar(buscar,0))
      await self.bot.say(embed=embed)
      await client.add_reaction(msg, '🔃')
