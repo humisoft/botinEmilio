@@ -77,7 +77,7 @@ async def on_message(message):
     if message.content.startswith('.help'):
      helpmsg = "ayuda"
      await client.send_message(message.channel, helpmsg)
-    if message.content.startswith('.gifinfo'):
+    if message.content.startswith('.infogif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
