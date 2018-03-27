@@ -40,20 +40,24 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     msg = await client.send_message(message.channel, mostrar(buscar,0))
-     await client.add_reaction(msg, '🔃')
+     soloTag = ''.join(args)
+     #msg = await client.send_message(message.channel, infoUrl(soloTag,0))
+     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
+     em.set_image(url=soloUr)
+     await client.send_message(message.channel, embed=em)
+     await client.add_reaction(em, '🔃')
      
      while True:
          def check(reaction, user):
             if reaction.count != 1 and reaction.emoji == '🔃':
                 return 1
             return 0
-         res = await client.wait_for_reaction(message=msg, check=check)
+         res = await client.wait_for_reaction(message=em, check=check)
          if '{0.reaction.emoji}'.format(res) == '🔃':
           ran = randint(0,cantidad-1)
-          await client.edit_message(msg, mostrar(buscar,ran))
-          await client.clear_reactions(msg)
-          await client.add_reaction(msg, '🔃')
+          await client.edit_message(em, infoUrl(soloUrl,ran))
+          await client.clear_reactions(em)
+          await client.add_reaction(em, '🔃')
           
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
@@ -77,26 +81,66 @@ async def on_message(message):
     if message.content.startswith('.help'):
      helpmsg = "ayuda"
      await client.send_message(message.channel, helpmsg)
-    if message.content.startswith('.infogif'):
-     args = message.content.split(" ")
-     del args[0]
-     soloUr = args[0]
-     print(soloUr)
-     del args[0]
-     soloTags = ' '.join(args)
-     print(soloTags)
-     em = discord.Embed(title='Gif', url=soloUr, description=soloTags, color=0xff0000)
-     em.set_image(url=soloUr)
-     await client.send_message(message.channel, embed=em)
      
-def mostrar(buscar,num):
+     
+     
+     
+# def mostrar(buscar,num):
+    # #BD 
+    # try:
+     # DATABASE_URL = os.environ['DATABASE_URL']
+     # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     # cur=conn.cursor()
+     # trozo1 = "SELECT url FROM giftable where tag like '%"
+     # trozo2 = buscar
+     # trozo3 = "%';"
+     # consulta =  trozo1+trozo2+trozo3
+     # cur.execute("""%s""", (AsIs(consulta),))
+     # #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
+     # rows = cur.fetchall()
+     # resultado = rows[num][0]
+     # return resultado
+     
+     # cur.close()
+    # except (Exception, psycopg2.DatabaseError) as error:
+        # print(error)
+    # finally:
+        # if conn is not None:
+            # conn.close()
+            
+            
+def infoUrl(buscar,num):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
      trozo1 = "SELECT url FROM giftable where tag like '%"
-     trozo2 = buscar
+     trozo2 = soloUrl
+     trozo3 = "%';"
+     consulta =  trozo1+trozo2+trozo3
+     cur.execute("""%s""", (AsIs(consulta),))
+     #cur.execute("""SELECT url FROM giftable where tag like \'%%%s%%\'""", (AsIs(consulta),))
+     rows = cur.fetchall()
+     resultado = rows[num][0]
+     return resultado
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            
+            
+def infoTag(buscar,num):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     trozo1 = "SELECT tag FROM giftable where tag like '%"
+     trozo2 = soloTag
      trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
