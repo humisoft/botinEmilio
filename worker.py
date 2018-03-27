@@ -85,7 +85,7 @@ async def on_message(message):
      tags = ' '.join(args)
      embed=discord.Embed(title="Gif", url=url, description=tags, color=0xff0000)
      embed.set_thumbnail(url=url)
-     await self.bot.say(embed=embed)
+     await client.bot.say(embed=embed)
      
 def mostrar(buscar,num):
     #BD 
