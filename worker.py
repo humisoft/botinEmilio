@@ -43,7 +43,7 @@ async def on_message(message):
      soloTag = ''.join(args)
      #msg = await client.send_message(message.channel, infoUrl(soloTag,0))
      em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
-     em.set_image(url=soloUr)
+     em.set_image(url=infoUrl(buscar,0))
      await client.send_message(message.channel, embed=em)
      await client.add_reaction(em, '🔃')
      
