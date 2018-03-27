@@ -40,7 +40,7 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000,width=200)
+     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000,width=200px)
      em.set_image(url=infoUrl(buscar,0))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
