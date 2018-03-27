@@ -80,12 +80,11 @@ async def on_message(message):
     if message.content.startswith('.infogif'):
      args = message.content.split(" ")
      del args[0]
-     ur = args[0]
-     url = ' '.join(ur)
+     soloUr = args[0]
      del args[0]
-     tags = ' '.join(args)
-     em = discord.Embed(title='Gif', url=\'%s\', description=\'%s\', color=0xff0000), (url,tags)
-     em.set_image(url=url)
+     soloTags = ' '.join(args)
+     em = discord.Embed(title='Gif', url=\'soloUr\', description=\'soloTags\', color=0xff0000)
+     em.set_image(url=\'soloUr\')
      await client.send_message(message.channel, embed=em)
      
 def mostrar(buscar,num):
