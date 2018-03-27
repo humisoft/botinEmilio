@@ -41,7 +41,7 @@ async def on_message(message):
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
      soloTag = ''.join(args)
-     #msg = await client.send_message(message.channel, infoUrl(soloTag,0))
+     #msg = await client.send_message(message.channel, infoUrl(buscar,0))
      em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      em.set_image(url=infoUrl(buscar,0))
      await client.send_message(message.channel, embed=em)
@@ -55,7 +55,7 @@ async def on_message(message):
          res = await client.wait_for_reaction(message=em, check=check)
          if '{0.reaction.emoji}'.format(res) == '🔃':
           ran = randint(0,cantidad-1)
-          await client.edit_message(em, infoUrl(soloUrl,ran))
+          await client.edit_message(em, infoUrl(buscar,ran))
           await client.clear_reactions(em)
           await client.add_reaction(em, '🔃')
           
@@ -116,7 +116,7 @@ def infoUrl(buscar,num):
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
      trozo1 = "SELECT url FROM giftable where tag like '%"
-     trozo2 = soloUrl
+     trozo2 = buscar
      trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
@@ -140,7 +140,7 @@ def infoTag(buscar,num):
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
      trozo1 = "SELECT tag FROM giftable where tag like '%"
-     trozo2 = soloTag
+     trozo2 = buscar
      trozo3 = "%';"
      consulta =  trozo1+trozo2+trozo3
      cur.execute("""%s""", (AsIs(consulta),))
