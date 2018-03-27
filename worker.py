@@ -84,7 +84,7 @@ async def on_message(message):
      url = ' '.join(ur)
      del args[0]
      tags = ' '.join(args)
-     em = discord.Embed(title='Gif', url=%s%, description=%s%, color=0xff0000), (AsIs(url),AsIs(tags),)
+     em = discord.Embed(title='Gif', url=\'%s%\', description=\'%s%\', color=0xff0000), (AsIs(url),AsIs(tags),)
      em.set_image(url=url)
      await client.send_message(message.channel, embed=em)
      
