@@ -64,7 +64,11 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     meter(url,tags)
+	 if compo != None:
+      await client.send_message(message.channel, 'ESTE GIF YA ESTA EN LA BASE DE DATOS')
+     else:
+	  meter(url,tags)
+     
     if message.content.startswith('.updategif'):
      args = message.content.split(" ")
      del args[0]
