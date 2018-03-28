@@ -45,7 +45,7 @@ async def on_message(message):
      em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
      url = infoUrl(buscar,0)
-     em.video(url=url))
+     em.video(url=url)
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
      response = requests.get(url)
