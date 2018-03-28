@@ -62,7 +62,7 @@ async def on_message(message):
           ran = randint(0,cantidad-1)
           em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
           #em2.set_image(url=infoUrl(buscar,ran))
-          em2.set_video(url=infoUrl(buscar,ran))
+          em2.video(url=infoUrl(buscar,ran))
           await client.edit_message(msg, embed=em2)
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
