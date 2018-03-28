@@ -102,13 +102,13 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
     #BORRAR GIF
-    if message.content.startswith('.deleteargif'):
+    if message.content.startswith('.deletegif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
      compo = comprobarUrl(url)
      if compo != None:
-      deletear(url)
+      delete(url)
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
@@ -212,7 +212,7 @@ def actualizar(url, tags):
             conn.close()    
             
 #BORRA GIF BD          
-def deletear(url):
+def delete(url):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
