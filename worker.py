@@ -7,6 +7,8 @@ import json
 import os
 import psycopg2
 from psycopg2.extensions import AsIs
+import requests
+import mimetypes
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
@@ -44,6 +46,11 @@ async def on_message(message):
      em.set_image(url=infoUrl(buscar,0))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
+     response = requests.get(url)
+     content_type = response.headers['content-type']
+     extension = mimetypes.guess_extension(content_type)
+     print(content_type)
+     print(extension)
      while True:
          def check(reaction, user):
             if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor == user:
