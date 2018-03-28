@@ -42,13 +42,9 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
-     em.set_image(url=infoUrl(buscar,0))
-     url = infoUrl(buscar,0)
-     response = requests.get(url)
-     content_type = response.headers['content-type']
-     extension = mimetypes.guess_extension(content_type)
-     stri = ':heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign:\n:link: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n:heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign:'
+     #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
+     #em.set_image(url=infoUrl(buscar,0))
+     stri = ':white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n:white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button::white_square_button:'
      msg = await client.send_message(message.channel, str(stri))
      await client.add_reaction(msg, '🔃')
      
