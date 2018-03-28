@@ -75,7 +75,7 @@ async def on_message(message):
      contador = infoUrl(url)
      if contador > 0:
       actualizar(url,tags)
-     else
+     else:
       await client.edit_message(msg, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
     if message.content.startswith('.deleteargif'):
      args = message.content.split(" ")
