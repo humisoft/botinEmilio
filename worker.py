@@ -80,11 +80,11 @@ async def on_message(message):
      tags = ' '.join(args)
      compo = comprobarUrl(url)
      if compo != None:
-      ran = randint(0,1000)
+      ran = randint(1000,9999)
       await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran))
       compUpdate = await client.wait_for_message(author=message.author)
-      print(compUpdate)
-      if message.content(str(ran)):
+      nume = str(ran)
+      if message.content(nume):
        actualizar(url,tags)
       else:
        await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
