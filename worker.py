@@ -44,7 +44,7 @@ async def on_message(message):
      em.set_image(url=infoUrl(buscar,0))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
-     
+     print(messageAuthor)
      while True:
          def check(reaction, user):
             if reaction.count != 1 and reaction.emoji == '🔃':
