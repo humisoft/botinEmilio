@@ -44,8 +44,6 @@ async def on_message(message):
      cantidad = canti(buscar)
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
-     print(infoUrl(buscar,0))
-     print(infoTag(buscar,0))
      if infoUrl(buscar,0) or infoTag(buscar,0):
          barraArri = '```\n ```'
          barraAbaj = '```\n ```'
@@ -70,7 +68,7 @@ async def on_message(message):
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
      else:
-      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF QUE BUSCAS')
+      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     #METER GIF
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
@@ -80,7 +78,7 @@ async def on_message(message):
      tags = ' '.join(args)
      compo = comprobarUrl(url)
      if compo != None:
-      await client.send_message(message.channel, 'ESTE GIF YA ESTA EN LA BASE DE DATOS')
+      await client.send_message(message.channel, ':octagonal_sign:ESTE GIF YA ESTA EN LA BASE DE DATOS:octagonal_sign:')
      else:
       meter(url,tags)
     
@@ -94,14 +92,14 @@ async def on_message(message):
      compo = comprobarUrl(url)
      if compo != None:
       ran = randint(1000,9999)
-      await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran))
+      await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran) + '```')
       nume = str(ran)
       if await client.wait_for_message(author=message.author, content=nume):
        actualizar(url,tags)
       # if await client.wait_for_message(author=message.author, content != nume):
        # await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
      else:
-      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
+      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
     #BORRAR GIF
     if message.content.startswith('.deleteargif'):
@@ -112,7 +110,7 @@ async def on_message(message):
      if compo != None:
       deletear(url)
      else:
-      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
+      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
     #AYUDA  
     if message.content.startswith('.help'):
