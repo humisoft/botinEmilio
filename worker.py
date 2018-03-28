@@ -46,7 +46,7 @@ async def on_message(message):
      #em.set_image(url=infoUrl(buscar,0))
      barraArri = '```\n ```'
      barraAbaj = '```\n ```'
-     stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,0) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,0) + '**\n\n' + str(barraAbaj)
+     stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + 'http://img.imgur.com/8vp5F.gif'  + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + 'http://img.imgur.com/8vp5F.gif' + '**\n\n' + str(barraAbaj)
      msg = await client.send_message(message.channel, str(stri))
      await client.add_reaction(msg, '🔃')
      while True:
