@@ -44,10 +44,10 @@ async def on_message(message):
      cantidad = canti(buscar)
      em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
-     em.set_video(url=infoUrl(buscar,0))
+     url = infoUrl(buscar,0)
+     em.video(url=url))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
-     url = infoUrl(buscar,0)
      response = requests.get(url)
      content_type = response.headers['content-type']
      extension = mimetypes.guess_extension(content_type)
