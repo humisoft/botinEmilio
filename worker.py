@@ -48,7 +48,7 @@ async def on_message(message):
      response = requests.get(url)
      content_type = response.headers['content-type']
      extension = mimetypes.guess_extension(content_type)
-     stri = '-------------------------------------------------------\n:link: ' + infoUrl(buscar,0) + ' \n:pencil: ' + infoTag(buscar,0) + '\n-------------------------'
+     stri = ':heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign:\n:link: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n:heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign::heavy_minus_sign:'
      msg = await client.send_message(message.channel, str(stri))
      await client.add_reaction(msg, '🔃')
      
