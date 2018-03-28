@@ -46,7 +46,6 @@ async def on_message(message):
      await client.add_reaction(msg, '🔃')
      while True:
          def check(reaction, user):
-            print(user)
             if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor == user:
                 return 1
             return 0
@@ -147,7 +146,7 @@ def comprobarUrl(url):
      DATABASE_URL = os.environ['DATABASE_URL']
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
-     cur.execute("""SELECT url FROM giftable where url = %s""", (AsIs(url),))
+     cur.execute("""SELECT url FROM giftable where url = \'%s\'""", (AsIs(url),))
      rows = cur.fetchall()
      resultado = rows[0][0]
      return resultado
