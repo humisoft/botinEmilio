@@ -72,7 +72,7 @@ async def on_message(message):
      del args[0]
      tags = ' '.join(args)
      contador = comprobarUrl(url)
-     if len(contador) > 0:
+     if contador != null:
       actualizar(url,tags)
      else:
       await client.edit_message(msg, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
