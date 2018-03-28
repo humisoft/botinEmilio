@@ -46,29 +46,31 @@ async def on_message(message):
      #em.set_image(url=infoUrl(buscar,0))
      print(infoUrl(buscar,0))
      print(infoTag(buscar,0))
-     barraArri = '```\n ```'
-     barraAbaj = '```\n ```'
-     stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,0) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,0) + '**\n\n' + str(barraAbaj)
-     msg = await client.send_message(message.channel, str(stri))
-     await client.add_reaction(msg, '🔃')
-     while True:
-         def check(reaction, user):
-            if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor == user:
-                return 1
-            return 0
-         res = await client.wait_for_reaction(message=msg, check=check)
-         if '{0.reaction.emoji}'.format(res) == '🔃':
-          ran = randint(0,cantidad-1)
-          #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
-          #em2.set_image(url=infoUrl(buscar,ran))
-          #await client.edit_message(msg, embed=em2)
-          barraArri = '```\n ```'
-          barraAbaj = '```\n ```'
-          stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,ran) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,ran) + '**\n\n' + str(barraAbaj)
-          await client.edit_message(msg, str(stri))
-          await client.clear_reactions(msg)
-          await client.add_reaction(msg, '🔃')
-          
+     if infoUrl(buscar,0) OR infoTag(buscar,0):
+         barraArri = '```\n ```'
+         barraAbaj = '```\n ```'
+         stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,0) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,0) + '**\n\n' + str(barraAbaj)
+         msg = await client.send_message(message.channel, str(stri))
+         await client.add_reaction(msg, '🔃')
+         while True:
+             def check(reaction, user):
+                if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor == user:
+                    return 1
+                return 0
+             res = await client.wait_for_reaction(message=msg, check=check)
+             if '{0.reaction.emoji}'.format(res) == '🔃':
+              ran = randint(0,cantidad-1)
+              #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
+              #em2.set_image(url=infoUrl(buscar,ran))
+              #await client.edit_message(msg, embed=em2)
+              barraArri = '```\n ```'
+              barraAbaj = '```\n ```'
+              stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,ran) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,ran) + '**\n\n' + str(barraAbaj)
+              await client.edit_message(msg, str(stri))
+              await client.clear_reactions(msg)
+              await client.add_reaction(msg, '🔃')
+     else:
+      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF QUE BUSCAS')
     #METER GIF
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
