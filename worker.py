@@ -71,16 +71,21 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     contador = comprobarUrl(url)
-     if contador != None:
+     compo = comprobarUrl(url)
+     if compo != None:
       actualizar(url,tags)
      else:
-      await client.send_message(message.channel, 'NO ENCUENTRA GIF EN LA BASE DATOS')
+      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
     if message.content.startswith('.deleteargif'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
-     deletear(url)
+     compo = comprobarUrl(url)
+     if compo != None:
+      deletear(url)
+     else:
+      await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
+      
     if message.content.startswith('.help'):
      help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description='Botin', color=0xff0000)
      help.set_image(url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg')
