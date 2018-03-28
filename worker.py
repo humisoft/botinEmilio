@@ -72,8 +72,8 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     contador = infoUrl(url)
-     if contador > 0:
+     contador = comprobarUrl(url)
+     if len(contador) > 0:
       actualizar(url,tags)
      else:
       await client.edit_message(msg, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
@@ -141,7 +141,7 @@ def infoTag(buscar,num):
             conn.close()
             
             
-def infoUrl(url):
+def comprobarUrl(url):
     #BD 
     try:
      DATABASE_URL = os.environ['DATABASE_URL']
