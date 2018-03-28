@@ -81,7 +81,8 @@ async def on_message(message):
      compo = comprobarUrl(url)
      if compo != None:
       ran = randint(0,1000)
-      compUpdate = await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ ran
+      await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ ran)
+      compUpdate = await client.wait_for_message(author=message.author)
       if compUpdate == ran:
        actualizar(url,tags)
       else:
