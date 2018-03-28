@@ -7,7 +7,6 @@ import json
 import os
 import psycopg2
 from psycopg2.extensions import AsIs
-import pprint
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
@@ -35,6 +34,7 @@ async def on_message(message):
     messageChannel = message.channel
     messageTimestamp = message.timestamp
 
+    #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif'):
      args = message.content.split(" ")
      del args[0]
@@ -58,6 +58,7 @@ async def on_message(message):
           await client.clear_reactions(msg)
           await client.add_reaction(msg, '🔃')
           
+    #METER GIF
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
      del args[0]
@@ -69,7 +70,8 @@ async def on_message(message):
       await client.send_message(message.channel, 'ESTE GIF YA ESTA EN LA BASE DE DATOS')
      else:
       meter(url,tags)
-     
+    
+    #ACTUALIZAR TAG GIF 
     if message.content.startswith('.updategif'):
      args = message.content.split(" ")
      del args[0]
@@ -81,6 +83,8 @@ async def on_message(message):
       actualizar(url,tags)
      else:
       await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
+    
+    #BORRAR GIF
     if message.content.startswith('.deleteargif'):
      args = message.content.split(" ")
      del args[0]
@@ -90,7 +94,8 @@ async def on_message(message):
       deletear(url)
      else:
       await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
-      
+    
+    #AYUDA  
     if message.content.startswith('.help'):
      help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description='Botin', color=0xff0000)
      help.set_image(url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg')
@@ -103,7 +108,7 @@ async def on_message(message):
      await client.send_message(message.channel, embed=help)
 
      
-            
+#SACA URL AL BUSCAR POR TAGS            
 def infoUrl(buscar,num):
     #BD 
     try:
@@ -126,7 +131,8 @@ def infoUrl(buscar,num):
         if conn is not None:
             conn.close()
             
-            
+
+#SACA TAGS DEL GIF             
 def infoTag(buscar,num):
     #BD 
     try:
@@ -149,7 +155,8 @@ def infoTag(buscar,num):
         if conn is not None:
             conn.close()
             
-            
+
+#COMPRUEBA SI ENCUENTRA LA URL A RAIZ DE UNA URL            
 def comprobarUrl(url):
     #BD 
     try:
@@ -169,6 +176,7 @@ def comprobarUrl(url):
             conn.close()
             
 
+#ACTUALIZA TAGS DE GIF
 def actualizar(url, tags):
     #BD 
     try:
@@ -186,7 +194,7 @@ def actualizar(url, tags):
         if conn is not None:
             conn.close()    
             
-            
+#BORRA GIF BD          
 def deletear(url):
     #BD 
     try:
@@ -204,7 +212,7 @@ def deletear(url):
         if conn is not None:
             conn.close()  
             
-            
+#METE URL Y TAGS EN BD            
 def meter(url, tags):
     #BD 
     try:
@@ -223,7 +231,7 @@ def meter(url, tags):
             conn.close()  
 
 
-    
+#SACA LA CANTIDAD DE GIFS CON ESOS TAGS   
 def canti(buscar):
     #BD 
     try:
@@ -246,5 +254,6 @@ def canti(buscar):
         if conn is not None:
             conn.close()
 
+#RUN
 client.run(os.environ.get('BOT_TOKEN'))
 
