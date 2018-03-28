@@ -82,9 +82,12 @@ async def on_message(message):
     if message.content.startswith('.help'):
      help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description='Botin', color=0xff0000)
      help.set_image(url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg')
-     help.add_field(name='Mostrar Gif', value='.gif tags', inline=True)
+     help.add_field(name='Mostrar Gif', value='.gif [tags]', inline=True)
+     help.add_field(name='Ejemplo Mostrar Gif', value='.gif motos marquez', inline=True)
      help.add_field(name='Guardar Gif', value='.creategif url tags', inline=True)
+     help.add_field(name='Ejemplo Guardar Gif', value='.creategif http://wwww.susto.com/imagen.gif susto', inline=True)
      help.add_field(name='Editar tags de Gif', value='.updategif url tags', inline=True)
+     help.add_field(name='Ejemplo Editar tags de Gif', value='.updategif http://wwww.susto.com/imagen.gif susto discord', inline=True)
      await client.send_message(message.channel, embed=help)
 
      
