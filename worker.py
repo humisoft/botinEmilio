@@ -84,7 +84,7 @@ async def on_message(message):
       await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran))
       compUpdate = await client.wait_for_message(author=message.author)
       print(compUpdate)
-      if compUpdate == str(ran):
+      if message.content.startswith(str(ran)):
        actualizar(url,tags)
       else:
        await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
