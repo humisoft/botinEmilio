@@ -46,7 +46,7 @@ async def on_message(message):
      #em.set_image(url=infoUrl(buscar,0))
      barraArri = ':octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign:'
      barraAbaj = ':octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign::octagonal_sign:'
-     stri = barraArri + ' \n:link: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n' + barraAbaj
+     stri = barraArri + '\n\n:link: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n\n' + barraAbaj
      msg = await client.send_message(message.channel, str(stri))
      await client.add_reaction(msg, '🔃')
      while True:
