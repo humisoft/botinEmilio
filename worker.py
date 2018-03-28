@@ -48,7 +48,7 @@ async def on_message(message):
      while True:
          def check(reaction, user):
             print(user)
-            if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor = user:
+            if reaction.count != 1 and reaction.emoji == '🔃' and messageAuthor == user:
                 return 1
             return 0
          res = await client.wait_for_reaction(message=msg, check=check)
