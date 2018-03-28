@@ -44,7 +44,6 @@ async def on_message(message):
      em.set_image(url=infoUrl(buscar,0))
      msg = await client.send_message(message.channel, embed=em)
      await client.add_reaction(msg, '🔃')
-     #print(messageAuthor)
      while True:
          def check(reaction, user):
             print(user)
@@ -73,7 +72,11 @@ async def on_message(message):
      url = args[0]
      del args[0]
      tags = ' '.join(args)
-     actualizar(url,tags)
+     contador = infoUrl(url)
+     if contador > 0:
+      actualizar(url,tags)
+     else
+      await client.edit_message(msg, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
     if message.content.startswith('.deleteargif'):
      args = message.content.split(" ")
      del args[0]
@@ -136,6 +139,26 @@ def infoTag(buscar,num):
     finally:
         if conn is not None:
             conn.close()
+            
+            
+def infoUrl(url):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""SELECT url FROM giftable where url = %s""", (AsIs(url),))
+     rows = cur.fetchall()
+     resultado = rows[0][0]
+     return resultado
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            
 
 def actualizar(url, tags):
     #BD 
