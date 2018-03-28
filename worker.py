@@ -44,8 +44,8 @@ async def on_message(message):
      cantidad = canti(buscar)
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
-     barraArri = '```\n```'
-     barraAbaj = '```\n```'
+     barraArri = '```\n ```'
+     barraAbaj = '```\n ```'
      stri = barraArri + '\n\n:link: ' + infoUrl(buscar,0) + ' \n\n:pencil: ' + infoTag(buscar,0) + '\n\n' + barraAbaj
      msg = await client.send_message(message.channel, str(stri))
      await client.add_reaction(msg, '🔃')
