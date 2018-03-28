@@ -80,7 +80,12 @@ async def on_message(message):
      tags = ' '.join(args)
      compo = comprobarUrl(url)
      if compo != None:
-      actualizar(url,tags)
+      ran = randint(0,1000)
+      compUpdate = await client.send_message(message.channel, 'ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ ran
+      if compUpdate == ran:
+       actualizar(url,tags)
+      else:
+      await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
      else:
       await client.send_message(message.channel, 'NO ENCUENTRA EL GIF EN LA BASE DATOS')
     
