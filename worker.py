@@ -280,8 +280,10 @@ def canti(buscar):
      cur.execute("""%s""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = len(rows)
-     return resultado
-     
+     if resultado == 0:
+      return -1
+     else:
+      return resultado
      cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
