@@ -59,9 +59,7 @@ async def on_message(message):
               #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
               #em2.set_image(url=infoUrl(buscar,ran))
               #await client.edit_message(msg, embed=em2)
-              barraArri = '```\n ```'
-              barraAbaj = '```\n ```'
-              stri = str(barraArri) + '\n:regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,ran) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,ran) + '**\n\n' + str(barraAbaj)
+              stri = ':regional_indicator_u::regional_indicator_r::regional_indicator_l: ' + infoUrl(buscar,ran) + ' \n:regional_indicator_t::regional_indicator_a::regional_indicator_g: **' + infoTag(buscar,ran) + '**'
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
