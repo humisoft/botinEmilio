@@ -45,7 +45,7 @@ async def on_message(message):
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
      if infoUrl(buscar,0) or infoTag(buscar,0):
-         stri =  infoUrl(buscar,0) + ' \n**' + infoTag(buscar,0) + '**'
+         stri =  infoUrl(buscar,0) + ' \n**' + infoTag(buscar,0) + '** __' + cantidad + '__'
          msg = await client.send_message(message.channel, str(stri))
          await client.add_reaction(msg, '🔃')
          while True:
@@ -59,7 +59,7 @@ async def on_message(message):
               #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
               #em2.set_image(url=infoUrl(buscar,ran))
               #await client.edit_message(msg, embed=em2)
-              stri = infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '**'
+              stri = infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '** __' + cantidad + '__'
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
