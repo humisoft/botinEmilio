@@ -43,7 +43,7 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     ran = randint(0,cantidad-1)
+     ran = randint(1,cantidad-1)
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
      if infoUrl(buscar,ran) or infoTag(buscar,ran):
@@ -60,7 +60,8 @@ async def on_message(message):
               #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
               #em2.set_image(url=infoUrl(buscar,ran))
               #await client.edit_message(msg, embed=em2)
-              stri = infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '** __' + str(ran) + '/' + str(cantidad) + '__'
+			  ron = randint(1,cantidad-1)
+              stri = infoUrl(buscar,ron) + ' \n**' + infoTag(buscar,ron) + '** __' + str(ron) + '/' + str(cantidad) + '__'
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
