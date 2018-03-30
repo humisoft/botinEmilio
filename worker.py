@@ -43,6 +43,7 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
+     print(cantidad)
      ran = randint(0,cantidad-1)
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
