@@ -60,7 +60,7 @@ async def on_message(message):
               #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
               #em2.set_image(url=infoUrl(buscar,ran))
               #await client.edit_message(msg, embed=em2)
-			  ron = randint(1,cantidad-1)
+              ron = randint(1,cantidad-1)
               stri = infoUrl(buscar,ron) + ' \n**' + infoTag(buscar,ron) + '** __' + str(ron) + '/' + str(cantidad) + '__'
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
