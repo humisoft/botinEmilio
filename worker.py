@@ -9,6 +9,7 @@ import psycopg2
 from psycopg2.extensions import AsIs
 import requests
 import mimetypes
+from time import sleep
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
@@ -77,6 +78,7 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:ESTE GIF YA ESTA EN LA BASE DE DATOS:octagonal_sign:')
      else:
       meter(url,tags)
+      sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
     if message.content.startswith('.updategif'):
@@ -92,6 +94,7 @@ async def on_message(message):
       nume = str(ran)
       if await client.wait_for_message(author=message.author, content=nume):
        actualizar(url,tags)
+       sleep(5)
        await client.delete_message(message)
       # if await client.wait_for_message(author=message.author, content != nume):
        # await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
@@ -107,7 +110,7 @@ async def on_message(message):
      if compo != None:
       await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS :exclamation::exclamation: ')
      else:
-      await client.send_message(message.channel, ':grey_exclamation: NO ENCUENTRA EL GIF EN LA BASE DATOS :grey_exclamation:')
+      await client.send_message(message.channel, ':grey_exclamation: NO SE ENCUENTRA EL GIF EN LA BASE DATOS :grey_exclamation:')
     
     
     #BORRAR GIF
@@ -118,6 +121,7 @@ async def on_message(message):
      compo = comprobarUrl(url)
      if compo != None:
       delete(url)
+      sleep(5)
       await client.delete_message(message)
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
