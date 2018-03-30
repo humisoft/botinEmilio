@@ -77,7 +77,7 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:ESTE GIF YA ESTA EN LA BASE DE DATOS:octagonal_sign:')
      else:
       meter(url,tags)
-      client.delete_message(message)
+      await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
     if message.content.startswith('.updategif'):
      args = message.content.split(" ")
