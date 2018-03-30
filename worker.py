@@ -92,6 +92,7 @@ async def on_message(message):
       nume = str(ran)
       if await client.wait_for_message(author=message.author, content=nume):
        actualizar(url,tags)
+       await client.delete_message(message)
       # if await client.wait_for_message(author=message.author, content != nume):
        # await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
      else:
@@ -105,6 +106,7 @@ async def on_message(message):
      compo = comprobarUrl(url)
      if compo != None:
       delete(url)
+      await client.delete_message(message)
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
