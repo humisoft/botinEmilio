@@ -45,7 +45,7 @@ async def on_message(message):
      #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
      #em.set_image(url=infoUrl(buscar,0))
      if infoUrl(buscar,0) or infoTag(buscar,0):
-         stri =  infoUrl(buscar,0) + ' \n**' + infoTag(buscar,0) + '** __' + cantidad + '__'
+         stri =  infoUrl(buscar,0) + ' \n**' + infoTag(buscar,0) + '** __' + str(cantidad) + '__'
          msg = await client.send_message(message.channel, str(stri))
          await client.add_reaction(msg, '🔃')
          while True:
@@ -59,7 +59,7 @@ async def on_message(message):
               #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
               #em2.set_image(url=infoUrl(buscar,ran))
               #await client.edit_message(msg, embed=em2)
-              stri = infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '** __' + cantidad + '__'
+              stri = infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '** __' + str(cantidad) + '__'
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
@@ -98,6 +98,18 @@ async def on_message(message):
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
+    #COMPROBAR SI EXISTE GIF EN BD
+    if message.content.startswith('.comprobargif'):
+     args = message.content.split(" ")
+     del args[0]
+     url = args[0]
+     compo = comprobarUrl(url)
+     if compo != None:
+      await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS :exclamation::exclamation: ')
+     else:
+      await client.send_message(message.channel, ':grey_exclamation: NO ENCUENTRA EL GIF EN LA BASE DATOS :grey_exclamation:')
+    
+    
     #BORRAR GIF
     if message.content.startswith('.deletegif'):
      args = message.content.split(" ")
@@ -120,6 +132,8 @@ async def on_message(message):
      help.add_field(name='Ejemplo Guardar Gif', value='.creategif http://wwww.susto.com/imagen.gif susto', inline=True)
      help.add_field(name='Editar tags de Gif', value='.updategif url tags', inline=True)
      help.add_field(name='Ejemplo Editar tags de Gif', value='.updategif http://wwww.susto.com/imagen.gif susto discord', inline=True)
+     help.add_field(name='Comprobar si existe Gif', value='.comprobargif url', inline=True)
+     help.add_field(name='Ejemplo Comprobar Gif', value='.comprobargif http://wwww.susto.com/imagen.gif', inline=True)
      await client.send_message(message.channel, embed=help)
 
      
