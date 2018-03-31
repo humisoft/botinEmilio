@@ -43,11 +43,13 @@ async def on_message(message):
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
      cantidad = canti(buscar)
-     print(cantidad)
-     ran = randint(0,cantidad-1)
-     #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
-     #em.set_image(url=infoUrl(buscar,0))
-     if infoUrl(buscar,ran) or infoTag(buscar,ran):
+     if cantidad == 0:
+        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
+     else:
+        ran = randint(0,cantidad-1)
+        #em = discord.Embed(title='Gif', url=infoUrl(buscar,0), description=infoTag(buscar,0), color=0xff0000)
+        #em.set_image(url=infoUrl(buscar,0))
+        if infoUrl(buscar,ran) or infoTag(buscar,ran):
          stri =  infoUrl(buscar,ran) + ' \n**' + infoTag(buscar,ran) + '** __' +str(ran+1) + '/' + str(cantidad) + '__'
          msg = await client.send_message(message.channel, str(stri))
          await client.add_reaction(msg, '🔃')
@@ -66,9 +68,10 @@ async def on_message(message):
               await client.edit_message(msg, str(stri))
               await client.clear_reactions(msg)
               await client.add_reaction(msg, '🔃')
-     else:
-      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
-    #METER GIF
+        else:
+        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
+    
+	#METER GIF
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
      del args[0]
