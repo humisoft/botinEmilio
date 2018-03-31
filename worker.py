@@ -71,7 +71,7 @@ async def on_message(message):
         else:
         await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
-	#METER GIF
+    #METER GIF
     if message.content.startswith('.creategif'):
      args = message.content.split(" ")
      del args[0]
@@ -283,10 +283,7 @@ def canti(buscar):
      cur.execute("""%s""", (AsIs(consulta),))
      rows = cur.fetchall()
      resultado = len(rows)
-     if resultado == 0:
-      return -1
-     else:
-      return resultado
+     return resultado
      cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
