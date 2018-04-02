@@ -111,8 +111,7 @@ async def on_message(message):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
-     del args[0]
-     tags = ' '.join(args)
+     tags = sacarTag(url)
      compo = comprobarUrl(url)
      if compo != None:
       await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS CON ESTOS TAGS: ' + str(tags) + ' :exclamation::exclamation: ')
@@ -172,7 +171,7 @@ def infoUrl(buscar,num):
             conn.close()
             
 
-#SACA TAGS DEL GIF             
+#SACA TAGS DEL GIF BUSCANDO POR TAGS            
 def infoTag(buscar,num):
     #BD 
     try:
@@ -204,6 +203,25 @@ def comprobarUrl(url):
      conn = psycopg2.connect(DATABASE_URL, sslmode='require')
      cur=conn.cursor()
      cur.execute("""SELECT url FROM giftable where url = \'%s\'""", (AsIs(url),))
+     rows = cur.fetchall()
+     resultado = rows[0][0]
+     return resultado
+     
+     cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            
+#SACA TAG A RAIZ DE URL            
+def sacarTag(url):
+    #BD 
+    try:
+     DATABASE_URL = os.environ['DATABASE_URL']
+     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+     cur=conn.cursor()
+     cur.execute("""SELECT tag FROM giftable where url = \'%s\'""", (AsIs(url),))
      rows = cur.fetchall()
      resultado = rows[0][0]
      return resultado
