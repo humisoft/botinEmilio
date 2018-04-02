@@ -111,9 +111,11 @@ async def on_message(message):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
+     del args[0]
+     tags = ' '.join(args)
      compo = comprobarUrl(url)
      if compo != None:
-      await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS :exclamation::exclamation: ')
+      await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS CON ESTOS TAGS: ' + str(tags) + ' :exclamation::exclamation: ')
      else:
       await client.send_message(message.channel, ':grey_exclamation: NO SE ENCUENTRA EL GIF EN LA BASE DATOS :grey_exclamation:')
     
