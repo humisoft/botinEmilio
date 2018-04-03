@@ -52,7 +52,8 @@ async def on_message(message):
       #em.set_image(url=infoUrl(buscar,0))
       if infoUrl(buscar,ran) or infoTag(buscar,ran):
        posiArray = ran
-       stri =  infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(posiArray+1) + '/' + str(cantidad) + '__'
+	   strinPosiArray = posiArray + 1
+       stri =  infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(strinPosiArray) + '/' + str(cantidad) + '__'
        msg = await client.send_message(message.channel, str(stri))
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
