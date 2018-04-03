@@ -38,7 +38,7 @@ async def on_message(message):
     messageTimestamp = message.timestamp
 
     #MOSTRAR GIF CON REACCION
-    if message.content.startswith('.gif'):
+    if message.content.startswith('.gif') or message.content.startswith('.tag'):
      args = message.content.split(" ")
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
@@ -72,7 +72,7 @@ async def on_message(message):
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
     #METER GIF
-    if message.content.startswith('.creategif'):
+    if message.content.startswith('.creategif') or message.content.startswith('.createtag'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
@@ -86,7 +86,7 @@ async def on_message(message):
       sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
-    if message.content.startswith('.updategif'):
+    if message.content.startswith('.updategif') or message.content.startswith('.updatetag'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
@@ -107,7 +107,7 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
     #COMPROBAR SI EXISTE GIF EN BD
-    if message.content.startswith('.comprobargif'):
+    if message.content.startswith('.comprobargif') or message.content.startswith('.comprobartag'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
@@ -120,15 +120,19 @@ async def on_message(message):
     
     
     #BORRAR GIF
-    if message.content.startswith('.deletegif'):
+    if message.content.startswith('.deletegif') or message.content.startswith('.deletetag'):
      args = message.content.split(" ")
      del args[0]
      url = args[0]
      compo = comprobarUrl(url)
      if compo != None:
-      delete(url)
-      sleep(5)
-      await client.delete_message(message)
+      ran = randint(1000,9999)
+      await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA CONFIRMAR EL BORRADO: '+ str(ran) + '```')
+      nume = str(ran)
+      if await client.wait_for_message(author=message.author, content=nume):
+       delete(url)
+       sleep(5)
+       await client.delete_message(message)
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
