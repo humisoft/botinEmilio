@@ -28,6 +28,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    client.change_status(discord.Game(name='Asustando con los gifs'))
 
 
 
