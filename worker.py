@@ -81,8 +81,8 @@ async def on_message(message):
            if '{0.reaction.emoji}'.format(res) == '👈':
             posiArray = posiArray - 1
             if posiArray == 0:
-             posiArray = cantidad - 1
-            strinPosiArray = posiArray + 1
+             posiArray = cantidad
+            strinPosiArray = posiArray
             stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
