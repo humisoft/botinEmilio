@@ -151,6 +151,13 @@ async def on_message(message):
      help.add_field(name='Ejemplo Comprobar Gif', value='.comprobargif http://wwww.susto.com/imagen.gif', inline=True)
      await client.send_message(message.channel, embed=help)
 
+     #STATUS BOT 
+    if message.content.startswith('.status'):
+     args = message.content.split(" ")
+     del args[0]
+     jugando = args[0]
+     await client.change_presence(game=discord.Game(name=jugando))  
+
      
 #SACA URL AL BUSCAR POR TAGS            
 def infoUrl(buscar,num):
