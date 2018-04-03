@@ -54,8 +54,8 @@ async def on_message(message):
        posiArray = ran
        stri =  infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(posiArray+1) + '/' + str(cantidad) + '__'
        msg = await client.send_message(message.channel, str(stri))
-       await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '👈')
+       await client.add_reaction(msg, '👉')
        while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
@@ -71,20 +71,20 @@ async def on_message(message):
             posiArray = posiArray + 1
             if posiArray == cantidad:
              posiArray = 0
-            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray+1) + '/' + str(cantidad) + '__'
+            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
-            await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '👈')
+            await client.add_reaction(msg, '👉')
            if '{0.reaction.emoji}'.format(res) == '👈':
             posiArray = posiArray - 1
             if posiArray == 0:
              posiArray = cantidad-1
-            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray-1) + '/' + str(cantidad) + '__'
+            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
-            await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '👈')
+            await client.add_reaction(msg, '👉')
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
