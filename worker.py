@@ -60,6 +60,8 @@ async def on_message(message):
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
                   return 1
+              if reaction.count != 1 and reaction.emoji == '👈' and messageAuthor == user:
+                  return 1
               return 0
            res = await client.wait_for_reaction(message=msg, check=check)
            if '{0.reaction.emoji}'.format(res) == '👉':
@@ -67,7 +69,18 @@ async def on_message(message):
             #em2.set_image(url=infoUrl(buscar,ran))
             #await client.edit_message(msg, embed=em2)
             posiArray = posiArray + 1
+            if posiArray == cantidad:
+             posiArray = 0
             stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray+1) + '/' + str(cantidad) + '__'
+            await client.edit_message(msg, str(stri))
+            await client.clear_reactions(msg)
+            await client.add_reaction(msg, '👉')
+            await client.add_reaction(msg, '👈')
+           if '{0.reaction.emoji}'.format(res) == '👈':
+            posiArray = posiArray - 1
+            if posiArray == 0:
+             posiArray = cantidad-1
+            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray-1) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
             await client.add_reaction(msg, '👉')
