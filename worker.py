@@ -155,7 +155,7 @@ async def on_message(message):
     if message.content.startswith('.status'):
      args = message.content.split(" ")
      del args[0]
-     jugando = args[0]
+     jugando = args
      await client.change_presence(game=discord.Game(name=jugando))  
 
      
