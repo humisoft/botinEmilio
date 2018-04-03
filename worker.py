@@ -82,7 +82,7 @@ async def on_message(message):
             posiArray = posiArray - 1
             if posiArray == 0:
              posiArray = cantidad
-            strinPosiArray = posiArray
+            strinPosiArray = posiArray + 1
             stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
