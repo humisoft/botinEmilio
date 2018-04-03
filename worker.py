@@ -54,14 +54,14 @@ async def on_message(message):
        posiArray = ran
        stri =  infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(posiArray+1) + '/' + str(cantidad) + '__'
        msg = await client.send_message(message.channel, str(stri))
-       await client.add_reaction(msg, 'U+25B6')
+       await client.add_reaction(msg, 'u"\u25B6"')
        while True:
            def check(reaction, user):
-              if reaction.count != 1 and reaction.emoji == 'U+25B6' and messageAuthor == user:
+              if reaction.count != 1 and reaction.emoji == 'u"\u25B6"' and messageAuthor == user:
                   return 1
               return 0
            res = await client.wait_for_reaction(message=msg, check=check)
-           if '{0.reaction.emoji}'.format(res) == 'U+25B6':
+           if '{0.reaction.emoji}'.format(res) == 'u"\u25B6"':
             #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
             #em2.set_image(url=infoUrl(buscar,ran))
             #await client.edit_message(msg, embed=em2)
@@ -69,7 +69,7 @@ async def on_message(message):
             stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(posiArray+1) + '/' + str(cantidad) + '__'
             await client.edit_message(msg, str(stri))
             await client.clear_reactions(msg)
-            await client.add_reaction(msg, 'U+25B6')
+            await client.add_reaction(msg, 'u"\u25B6"')
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
