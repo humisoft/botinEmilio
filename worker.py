@@ -112,9 +112,10 @@ async def on_message(message):
            finTemp = time.time()
            totalTiemp = finTemp - iniTiemp
            redondeoTiemp = int(totalTiemp)
+           print(redondeoTiemp)
            timeLoop = timeLoop - redondeoTiemp
        #fin While     
-      await client.clear_reactions(msg)
+       await client.clear_reactions(msg)
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
