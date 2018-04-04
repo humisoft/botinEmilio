@@ -118,7 +118,8 @@ async def on_message(message):
       meter(url,tags)
       mes = str(messageAuthor) + ' ha introducido el gif ' + str(url) + ' con los tags ' + str(tags)
       canal = discord.Object(id="430976826727333898")
-      await client.send_message(canal, str(mes))
+      chann = get_channel("bot_log")
+      await client.send_message(chann, str(mes))
       sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
