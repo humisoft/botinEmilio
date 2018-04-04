@@ -117,7 +117,6 @@ async def on_message(message):
      else:
       meter(url,tags)
       mes = str(messageAuthor) + ' ha introducido el gif ' + str(url) + ' con los tags ' + str(tags)
-      canal = discord.Object(id="430976826727333898")
       chann = discord.utils.get(client.get_all_channels(), name='bot_log')
       await client.send_message(chann, str(mes))
       sleep(5)
@@ -136,6 +135,9 @@ async def on_message(message):
       nume = str(ran)
       if await client.wait_for_message(author=message.author, content=nume):
        actualizar(url,tags)
+       mes = str(messageAuthor) + ' ha actualizado el gif ' + str(url) + ' con los tags ' + str(tags)
+       chann = discord.utils.get(client.get_all_channels(), name='bot_log')
+       await client.send_message(chann, str(mes))
        sleep(5)
        await client.delete_message(message)
      else:
@@ -166,6 +168,10 @@ async def on_message(message):
       nume = str(ran)
       if await client.wait_for_message(author=message.author, content=nume):
        delete(url)
+       tags = sacarTag(url)
+       mes = str(messageAuthor) + ' ha borrado el gif ' + str(url) + ' con los tags ' + str(tags)
+       chann = discord.utils.get(client.get_all_channels(), name='bot_log')
+       await client.send_message(chann, str(mes))
        sleep(5)
        await client.delete_message(message)
      else:
