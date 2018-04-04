@@ -73,7 +73,7 @@ async def on_message(message):
               return 0
            res = await client.wait_for_reaction(message=msg, timeout=20, check=check)
            
-           if '{0.reaction.emoji}'.format(res) == None:
+           if res == None:
             await client.clear_reactions(msg)
            
            
