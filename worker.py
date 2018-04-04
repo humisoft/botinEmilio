@@ -73,6 +73,7 @@ async def on_message(message):
               return 0
            res = await client.wait_for_reaction(message=msg, timeout=20, check=check)
            
+           print(res)
            if res == None:
             await client.clear_reactions(msg)
            
