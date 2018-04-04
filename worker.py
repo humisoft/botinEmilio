@@ -145,6 +145,7 @@ async def on_message(message):
      url = args[0]
      tags = sacarTag(url)
      compo = comprobarUrl(url)
+     print(messageChannel)
      if compo != None:
       await client.send_message(message.channel, ':exclamation::exclamation: YA EXISTE EN LA BASE DE DATOS CON ESTOS TAGS: ' + str(tags) + ' :exclamation::exclamation: ')
      else:
