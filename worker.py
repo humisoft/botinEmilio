@@ -116,7 +116,7 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:ESTE GIF YA ESTA EN LA BASE DE DATOS:octagonal_sign:')
      else:
       meter(url,tags)
-      mes = messageAuthor + ' ha introducido el gif ' + url + ' con los tags ' + tags
+      mes = str(messageAuthor) + ' ha introducido el gif ' + str(url) + ' con los tags ' + str(tags)
       await client.send_message(430976826727333898, str(mes))
       sleep(5)
       await client.delete_message(message)
