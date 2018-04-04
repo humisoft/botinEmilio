@@ -57,14 +57,19 @@ async def on_message(message):
        msg = await client.send_message(message.channel, str(stri))
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
+       await client.add_reaction(msg, '🔴')
        while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
                   return 1
               if reaction.count != 1 and reaction.emoji == '👈' and messageAuthor == user:
                   return 1
+              if reaction.count != 1 and reaction.emoji == '🔴' and messageAuthor == user:
+                  return 1
               return 0
            res = await client.wait_for_reaction(message=msg, check=check)
+           
+           #REACCION 👉
            if '{0.reaction.emoji}'.format(res) == '👉':
             #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
             #em2.set_image(url=infoUrl(buscar,ran))
@@ -78,6 +83,9 @@ async def on_message(message):
             await client.clear_reactions(msg)
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
+            await client.add_reaction(msg, '🔴')
+           
+           #REACCION 👈
            if '{0.reaction.emoji}'.format(res) == '👈':
             posiArray = posiArray - 1
             if posiArray == -1:
@@ -88,6 +96,11 @@ async def on_message(message):
             await client.clear_reactions(msg)
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
+            await client.add_reaction(msg, '🔴')
+           
+           #REACCION 🔴
+           if '{0.reaction.emoji}'.format(res) == '🔴':
+            await client.clear_reactions(msg)
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
@@ -121,8 +134,6 @@ async def on_message(message):
        actualizar(url,tags)
        sleep(5)
        await client.delete_message(message)
-      # if await client.wait_for_message(author=message.author, content != nume):
-       # await client.send_message(message.channel, 'HAS FRACASADO AL PONER EL CODIGO DE SEGURIDAD, NO SE UPDATEARA')
      else:
       await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
     
@@ -170,7 +181,7 @@ async def on_message(message):
      help.add_field(name='Ejemplo Comprobar Gif', value='.comprobargif http://wwww.susto.com/imagen.gif', inline=True)
      await client.send_message(message.channel, embed=help)
 
-     #STATUS BOT 
+    #STATUS BOT 
     if message.content.startswith('.status'):
      args = message.content.split(" ")
      del args[0]
