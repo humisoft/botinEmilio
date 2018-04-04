@@ -60,9 +60,9 @@ async def on_message(message):
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
        
-       timeLoop = 100
+       timeLoop = 20
+       iniTiemp = time.time()
        while timeLoop > 0:
-           iniTiemp = time.time()
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
                   return 1
@@ -88,7 +88,7 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
-            timeLoop = timeLoop + 100
+            timeLoop = timeLoop + 20
            
            #REACCION 👈
            if '{0.reaction.emoji}'.format(res) == '👈':
@@ -102,18 +102,20 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
-            timeLoop = timeLoop + 100
+            timeLoop = timeLoop + 20
            
            #REACCION 🔴
            if '{0.reaction.emoji}'.format(res) == '🔴':
             await client.clear_reactions(msg)
             timeLoop = 0
-            
-           finTemp = time.time()
-           totalTiemp = finTemp - iniTiemp
-           redondeoTiemp = int(totalTiemp)
-           print(redondeoTiemp)
-           timeLoop = timeLoop - redondeoTiemp
+           
+           if time.time() - iniTiemp > 20:
+            timeLoop = 0
+           #finTemp = time.time()
+           #totalTiemp = finTemp - iniTiemp
+           #redondeoTiemp = int(totalTiemp)
+           #print(redondeoTiemp)
+           #timeLoop = timeLoop - redondeoTiemp
        #fin While     
        await client.clear_reactions(msg)
       else:
