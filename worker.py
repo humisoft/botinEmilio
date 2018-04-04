@@ -119,7 +119,7 @@ async def on_message(message):
       print(message.author)
       print(messageAuthor)
       #mes = messageAuthor + ' ha introducido el gif ' + url + ' con los tags ' + tags
-      await client.send_message('bot_log', 'prueba de log')
+      await client.send_message(bot_log, 'prueba de log')
       sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
