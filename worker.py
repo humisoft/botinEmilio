@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import asyncio
 import random
 from random import randint
