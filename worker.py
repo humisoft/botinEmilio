@@ -10,6 +10,7 @@ from psycopg2.extensions import AsIs
 import requests
 import mimetypes
 from time import sleep
+import time
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
@@ -58,7 +59,10 @@ async def on_message(message):
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
-       while True:
+       
+       timeLoop = 100
+       while timeLoop > 0:
+           iniTiemp = time.time()
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
                   return 1
@@ -84,6 +88,7 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
+            timeLoop = timeLoop + 100
            
            #REACCION 👈
            if '{0.reaction.emoji}'.format(res) == '👈':
@@ -97,10 +102,17 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
+            timeLoop = timeLoop + 100
            
            #REACCION 🔴
            if '{0.reaction.emoji}'.format(res) == '🔴':
             await client.clear_reactions(msg)
+            timeLoop = 0
+            
+           finTemp = time.time()
+           totalTiemp = finTemp - iniTiemp
+           redondeoTiemp = int(totalTiemp)
+           timeLoop = timeLoop - redondeoTiemp
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
