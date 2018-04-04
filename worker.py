@@ -10,7 +10,6 @@ from psycopg2.extensions import AsIs
 import requests
 import mimetypes
 from time import sleep
-import time
 
 # INFORMATION:
 # SERVER.ID: '188966409672458241'
@@ -60,8 +59,6 @@ async def on_message(message):
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
        
-       #timeLoop = 20
-       #iniTiemp = time.time()
        while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
@@ -73,55 +70,43 @@ async def on_message(message):
               return 0
            res = await client.wait_for_reaction(message=msg, timeout=20, check=check)
            
+           #REACCION SIN REACCION
            if res is None:
             await client.clear_reactions(msg)
-           
-           
-           #REACCION 👉
-           if '{0.reaction.emoji}'.format(res) == '👉':
-            #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
-            #em2.set_image(url=infoUrl(buscar,ran))
-            #await client.edit_message(msg, embed=em2)
-            posiArray = posiArray + 1
-            if posiArray == cantidad:
-             posiArray = 0
-            strinPosiArray = posiArray + 1
-            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
-            await client.edit_message(msg, str(stri))
-            await client.clear_reactions(msg)
-            await client.add_reaction(msg, '👈')
-            await client.add_reaction(msg, '👉')
-            await client.add_reaction(msg, '🔴')
-        #    timeLoop = timeLoop + 20
-           
-           #REACCION 👈
-           if '{0.reaction.emoji}'.format(res) == '👈':
-            posiArray = posiArray - 1
-            if posiArray == -1:
-             posiArray = cantidad - 1
-            strinPosiArray = posiArray + 1
-            stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
-            await client.edit_message(msg, str(stri))
-            await client.clear_reactions(msg)
-            await client.add_reaction(msg, '👈')
-            await client.add_reaction(msg, '👉')
-            await client.add_reaction(msg, '🔴')
-        #    timeLoop = timeLoop + 20
-           
-           #REACCION 🔴
-           if '{0.reaction.emoji}'.format(res) == '🔴':
-            await client.clear_reactions(msg)
-        #    timeLoop = 0
-           
-        #   if time.time() - iniTiemp > 20:
-        #    print('entrando')
-        #    timeLoop = 0
-           #finTemp = time.time()
-           #totalTiemp = finTemp - iniTiemp
-           #redondeoTiemp = int(totalTiemp)
-           #print(redondeoTiemp)
-           #timeLoop = timeLoop - redondeoTiemp
-           await client.clear_reactions(msg)
+           else:
+               #REACCION 👉
+               if '{0.reaction.emoji}'.format(res) == '👉':
+                #em2 = discord.Embed(title='Gif', url=infoUrl(buscar,ran), description=infoTag(buscar,ran), color=0xff0000)
+                #em2.set_image(url=infoUrl(buscar,ran))
+                #await client.edit_message(msg, embed=em2)
+                posiArray = posiArray + 1
+                if posiArray == cantidad:
+                 posiArray = 0
+                strinPosiArray = posiArray + 1
+                stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
+                await client.edit_message(msg, str(stri))
+                await client.clear_reactions(msg)
+                await client.add_reaction(msg, '👈')
+                await client.add_reaction(msg, '👉')
+                await client.add_reaction(msg, '🔴')
+               
+               #REACCION 👈
+               if '{0.reaction.emoji}'.format(res) == '👈':
+                posiArray = posiArray - 1
+                if posiArray == -1:
+                 posiArray = cantidad - 1
+                strinPosiArray = posiArray + 1
+                stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
+                await client.edit_message(msg, str(stri))
+                await client.clear_reactions(msg)
+                await client.add_reaction(msg, '👈')
+                await client.add_reaction(msg, '👉')
+                await client.add_reaction(msg, '🔴')
+               
+               #REACCION 🔴
+               if '{0.reaction.emoji}'.format(res) == '🔴':
+                await client.clear_reactions(msg)
+
        #fin While     
        await client.clear_reactions(msg)
       else:
