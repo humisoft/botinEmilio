@@ -110,6 +110,7 @@ async def on_message(message):
             timeLoop = 0
            
            if time.time() - iniTiemp > 20:
+            print('entrando')
             timeLoop = 0
            #finTemp = time.time()
            #totalTiemp = finTemp - iniTiemp
