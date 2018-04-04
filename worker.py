@@ -117,7 +117,8 @@ async def on_message(message):
      else:
       meter(url,tags)
       mes = str(messageAuthor) + ' ha introducido el gif ' + str(url) + ' con los tags ' + str(tags)
-      await client.send_message(430976826727333898, str(mes))
+      channel = self.get_channel(430976826727333898)
+      await client.send_message(channel, str(mes))
       sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
