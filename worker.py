@@ -116,6 +116,7 @@ async def on_message(message):
       await client.send_message(message.channel, ':octagonal_sign:ESTE GIF YA ESTA EN LA BASE DE DATOS:octagonal_sign:')
      else:
       meter(url,tags)
+      await client.send_message(bot_log, '{0.reaction.user}'.format(res) + ' ha introducido el gif ' + url + ' con los tags ' + tags)
       sleep(5)
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
