@@ -117,8 +117,8 @@ async def on_message(message):
      else:
       meter(url,tags)
       mes = str(messageAuthor) + ' ha introducido el gif ' + str(url) + ' con los tags ' + str(tags)
-      canal = discord.Object(id='430976826727333898')
-      chann = client.get_channel("bot_log")
+      canal = discord.Object(id="430976826727333898")
+      chann = client.get_channel('bot_log')
       await client.send_message(chann, str(mes))
       sleep(5)
       await client.delete_message(message)
