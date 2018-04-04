@@ -60,9 +60,9 @@ async def on_message(message):
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
        
-       timeLoop = 20
-       iniTiemp = time.time()
-       while timeLoop > 0:
+       #timeLoop = 20
+       #iniTiemp = time.time()
+       while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
                   return 1
@@ -71,7 +71,7 @@ async def on_message(message):
               if reaction.count != 1 and reaction.emoji == '🔴' and messageAuthor == user:
                   return 1
               return 0
-           res = await client.wait_for_reaction(message=msg, check=check)
+           res = await client.wait_for_reaction(message=msg, timeout=20, check=check)
            
            #REACCION 👉
            if '{0.reaction.emoji}'.format(res) == '👉':
@@ -88,7 +88,7 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
-            timeLoop = timeLoop + 20
+        #    timeLoop = timeLoop + 20
            
            #REACCION 👈
            if '{0.reaction.emoji}'.format(res) == '👈':
@@ -102,21 +102,22 @@ async def on_message(message):
             await client.add_reaction(msg, '👈')
             await client.add_reaction(msg, '👉')
             await client.add_reaction(msg, '🔴')
-            timeLoop = timeLoop + 20
+        #    timeLoop = timeLoop + 20
            
            #REACCION 🔴
            if '{0.reaction.emoji}'.format(res) == '🔴':
             await client.clear_reactions(msg)
-            timeLoop = 0
+        #    timeLoop = 0
            
-           if time.time() - iniTiemp > 20:
-            print('entrando')
-            timeLoop = 0
+        #   if time.time() - iniTiemp > 20:
+        #    print('entrando')
+        #    timeLoop = 0
            #finTemp = time.time()
            #totalTiemp = finTemp - iniTiemp
            #redondeoTiemp = int(totalTiemp)
            #print(redondeoTiemp)
            #timeLoop = timeLoop - redondeoTiemp
+           await client.clear_reactions(msg)
        #fin While     
        await client.clear_reactions(msg)
       else:
