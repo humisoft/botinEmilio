@@ -118,7 +118,6 @@ async def on_message(message):
                 await client.delete_message(msg)
 
        #fin While     
-       await client.clear_reactions(msg)
       else:
        await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF QUE BUSCAS:octagonal_sign:')
     
