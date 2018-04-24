@@ -59,6 +59,7 @@ async def on_message(message):
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
        await client.add_reaction(msg, '🗑')
+       await client.delete_message(message)
        while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
@@ -113,7 +114,8 @@ async def on_message(message):
                 
                #REACCION 🗑
                if '{0.reaction.emoji}'.format(res) == '🗑':
-                await client.delete_message(message)
+               await client.delete_message(msg)
+)
 
        #fin While     
        await client.clear_reactions(msg)
