@@ -58,7 +58,7 @@ async def on_message(message):
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
        await client.add_reaction(msg, '🔴')
-       
+       await client.add_reaction(msg, '🗑')
        while True:
            def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '👉' and messageAuthor == user:
@@ -89,7 +89,7 @@ async def on_message(message):
                 await client.add_reaction(msg, '👈')
                 await client.add_reaction(msg, '👉')
                 await client.add_reaction(msg, '🔴')
-               
+                 
                #REACCION 👈
                if '{0.reaction.emoji}'.format(res) == '👈':
                 posiArray = posiArray - 1
