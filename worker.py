@@ -67,6 +67,8 @@ async def on_message(message):
                   return 1
               if reaction.count != 1 and reaction.emoji == '🔴' and messageAuthor == user:
                   return 1
+              if reaction.count != 1 and reaction.emoji == '🗑' and messageAuthor == user:
+                  return 1
               return 0
            res = await client.wait_for_reaction(message=msg, timeout=20, check=check)
            
@@ -89,6 +91,7 @@ async def on_message(message):
                 await client.add_reaction(msg, '👈')
                 await client.add_reaction(msg, '👉')
                 await client.add_reaction(msg, '🔴')
+                await client.add_reaction(msg, '🗑')
                  
                #REACCION 👈
                if '{0.reaction.emoji}'.format(res) == '👈':
@@ -102,6 +105,7 @@ async def on_message(message):
                 await client.add_reaction(msg, '👈')
                 await client.add_reaction(msg, '👉')
                 await client.add_reaction(msg, '🔴')
+                await client.add_reaction(msg, '🗑')
                
                #REACCION 🔴
                if '{0.reaction.emoji}'.format(res) == '🔴':
