@@ -106,6 +106,10 @@ async def on_message(message):
                #REACCION 🔴
                if '{0.reaction.emoji}'.format(res) == '🔴':
                 await client.clear_reactions(msg)
+                
+               #REACCION 🗑
+               if '{0.reaction.emoji}'.format(res) == '🗑':
+                await client.delete_message(message)
 
        #fin While     
        await client.clear_reactions(msg)
