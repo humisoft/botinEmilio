@@ -175,7 +175,7 @@ async def on_message(message):
     
     #BORRAR GIF
     if message.content.startswith('.deletegif') or message.content.startswith('.deletetag'):
-     if(message.author.id == '125931307212603392' or message.author.id == '125931468940771328')
+     if(message.author.id == '125931307212603392' or message.author.id == '125931468940771328'):
          args = message.content.split(" ")
          del args[0]
          url = args[0]
