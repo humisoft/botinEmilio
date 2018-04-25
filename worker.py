@@ -40,7 +40,7 @@ async def on_message(message):
 
     #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif') or message.content.startswith('.tag'):
-     print(message.author)
+     print(client.id)
      args = message.content.split(" ")
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
@@ -176,6 +176,7 @@ async def on_message(message):
     
     #BORRAR GIF
     if message.content.startswith('.deletegif') or message.content.startswith('.deletetag'):
+     #if(message.author == 'brandonbrb#7231' or message.author == 'brandonbrb#7231')
      args = message.content.split(" ")
      del args[0]
      url = args[0]
