@@ -40,7 +40,6 @@ async def on_message(message):
 
     #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif') or message.content.startswith('.tag'):
-     print(message.author.id)
      args = message.content.split(" ")
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
@@ -176,26 +175,28 @@ async def on_message(message):
     
     #BORRAR GIF
     if message.content.startswith('.deletegif') or message.content.startswith('.deletetag'):
-     #if(message.author == 'brandonbrb#7231' or message.author == 'brandonbrb#7231')
-     args = message.content.split(" ")
-     del args[0]
-     url = args[0]
-     compo = comprobarUrl(url)
-     if compo != None:
-      ran = randint(1000,9999)
-      await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA CONFIRMAR EL BORRADO: '+ str(ran) + '```')
-      nume = str(ran)
-      if await client.wait_for_message(author=message.author, content=nume):
-       delete(url)
-       tags = sacarTag(url)
-       mes = str(messageAuthor) + ' ha borrado el gif ' + str(url) + ' con los tags ' + str(tags)
-       chann = discord.utils.get(client.get_all_channels(), name='bot_log')
-       await client.send_message(chann, str(mes))
-       sleep(5)
-       await client.delete_message(message)
+     if(message.author.id == '125931307212603392' or message.author.id == '125931468940771328')
+         args = message.content.split(" ")
+         del args[0]
+         url = args[0]
+         compo = comprobarUrl(url)
+         if compo != None:
+          ran = randint(1000,9999)
+          await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA CONFIRMAR EL BORRADO: '+ str(ran) + '```')
+          nume = str(ran)
+          if await client.wait_for_message(author=message.author, content=nume):
+           delete(url)
+           tags = sacarTag(url)
+           mes = str(messageAuthor) + ' ha borrado el gif ' + str(url) + ' con los tags ' + str(tags)
+           chann = discord.utils.get(client.get_all_channels(), name='bot_log')
+           await client.send_message(chann, str(mes))
+           sleep(5)
+           await client.delete_message(message)
+         else:
+          await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
      else:
-      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
-    
+      await client.send_message(message.channel, ':octagonal_sign:NO TIENES PERMISO PARA BORRAR GIF:octagonal_sign:')
+      
     #AYUDA  
     if message.content.startswith('.help'):
      help = discord.Embed(title='AYUDA', url='http://lavozpopular.com/wp-content/uploads/2014/09/Muere-Emilio-Bot%C3%ADn.jpg', description='Botin', color=0xff0000)
