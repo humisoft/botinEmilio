@@ -140,26 +140,29 @@ async def on_message(message):
       await client.delete_message(message)
     #ACTUALIZAR TAG GIF 
     if message.content.startswith('.updategif') or message.content.startswith('.updatetag'):
-     args = message.content.split(" ")
-     del args[0]
-     url = args[0]
-     del args[0]
-     tags = ' '.join(args)
-     compo = comprobarUrl(url)
-     if compo != None:
-      ran = randint(1000,9999)
-      await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran) + '```')
-      nume = str(ran)
-      if await client.wait_for_message(author=message.author, content=nume):
-       actualizar(url,tags)
-       mes = str(messageAuthor) + ' ha actualizado el gif ' + str(url) + ' con los tags ' + str(tags)
-       chann = discord.utils.get(client.get_all_channels(), name='bot_log')
-       await client.send_message(chann, str(mes))
-       sleep(5)
-       await client.delete_message(message)
+     if(message.author.id == '125931307212603392' or message.author.id == '125931468940771328'):
+         args = message.content.split(" ")
+         del args[0]
+         url = args[0]
+         del args[0]
+         tags = ' '.join(args)
+         compo = comprobarUrl(url)
+         if compo != None:
+          ran = randint(1000,9999)
+          await client.send_message(message.channel, '```ESCRIBE ESTE NUMERO PARA ACEPTAR EL UPDATE: '+ str(ran) + '```')
+          nume = str(ran)
+          if await client.wait_for_message(author=message.author, content=nume):
+           actualizar(url,tags)
+           mes = str(messageAuthor) + ' ha actualizado el gif ' + str(url) + ' con los tags ' + str(tags)
+           chann = discord.utils.get(client.get_all_channels(), name='bot_log')
+           await client.send_message(chann, str(mes))
+           sleep(5)
+           await client.delete_message(message)
+         else:
+          await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
      else:
-      await client.send_message(message.channel, ':octagonal_sign:NO ENCUENTRA EL GIF EN LA BASE DATOS:octagonal_sign:')
-    
+      await client.send_message(message.channel, ':octagonal_sign:NO TIENES PERMISOS PARA ACTUALIZAR EL GIF:octagonal_sign:')
+      
     #COMPROBAR SI EXISTE GIF EN BD
     if message.content.startswith('.comprobargif') or message.content.startswith('.comprobartag'):
      args = message.content.split(" ")
@@ -175,7 +178,7 @@ async def on_message(message):
     
     #BORRAR GIF
     if message.content.startswith('.deletegif') or message.content.startswith('.deletetag'):
-     if(message.author.id == '125931307212603396' or message.author.id == '125931468940771328'):
+     if(message.author.id == '125931307212603392' or message.author.id == '125931468940771328'):
          args = message.content.split(" ")
          del args[0]
          url = args[0]
