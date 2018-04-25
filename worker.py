@@ -40,7 +40,7 @@ async def on_message(message):
 
     #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif') or message.content.startswith('.tag'):
-     print(client.user)
+     print(client.user.id)
      args = message.content.split(" ")
      del args[0]
      buscar = '%\' and tag like \'%'.join(args)
