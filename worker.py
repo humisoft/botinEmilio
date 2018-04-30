@@ -36,7 +36,7 @@ async def on_reaction_add(reaction, user):
     #REACCION QUOTE
     ava = user.avatar_url
     if reaction.emoji == '📌':
-     em = discord.Embed(title=user.name, description='YOYO', color=0xff0000)
+     em = discord.Embed(description=user.mention, color=0xff0000)
      em.set_author(name=user.name, icon_url=client.user.default_avatar_url)
      strin = 'hola'
      chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio', name='general')
