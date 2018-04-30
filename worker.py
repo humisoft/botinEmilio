@@ -34,20 +34,20 @@ async def on_ready():
 @client.event
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
-    me = reaction.message.content
-    nomServ = reaction.message.server
-    nomChan = reaction.message.channel
-    tim = reaction.message.author.mention + ' Te han citado el mensaje con fecha ' + str(reaction.message.timestamp)
     if reaction.emoji == '📌':
-     
+     me = reaction.message.content
+     nomServ = reaction.message.server
+     nomChan = reaction.message.channel
+     fecha = datetime.datetime.strptime (str(reaction.message.timestamp), "%Y-%m-%d %H:%M:%S")
+     tim = reaction.message.author.mention + ' Te han citado el mensaje con fecha ' + str(fecha)
      em = discord.Embed(description=me, color=0xff0000)
      em.set_author(name=reaction.message.author, icon_url=reaction.message.author.avatar_url)
      em.set_footer(text=str(tim))
      chan = discord.utils.get(client.get_all_channels(), server__name=str(nomServ), name=str(nomChan))
      await client.send_message(chan, embed=em)
      reaction.message.author.mention
-     #mensa = reaction.message.author.mention
-     #await client.send_message(chan, mensa)
+     mensa = reaction.message.author.mention
+     await client.send_message(chan, mensa)
      
 
 @client.event
