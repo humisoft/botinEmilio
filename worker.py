@@ -43,7 +43,7 @@ async def on_reaction_add(reaction, user):
     # if '{0.reaction.emoji}'.format(rea) == '📌':
      # print('ENTRAO A REACCION')
     if reaction.emoji == '📌':
-     em = discord.Embed(title='Gif', url='GG'), description='YOYO', color=0xff0000)
+     em = discord.Embed(title='Gif', url='GG', description='YOYO', color=0xff0000)
      
      chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio', name='general')
      await client.send_message(chan, em)
