@@ -53,7 +53,7 @@ async def on_message(message):
       if infoUrl(buscar,ran) or infoTag(buscar,ran):
        posiArray = ran
        strinPosiArray = posiArray + 1
-       stri =  str(messageAuthor) + ' buscó: ' + infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(strinPosiArray) + '/' + str(cantidad) + '__'
+       stri =  infoUrl(buscar,posiArray) + ' \n**' + str(messageAuthor) + ' buscó: ' + infoTag(buscar,posiArray) + '** __' +str(strinPosiArray) + '/' + str(cantidad) + '__'
        msg = await client.send_message(message.channel, str(stri))
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
@@ -86,7 +86,7 @@ async def on_message(message):
                 if posiArray == cantidad:
                  posiArray = 0
                 strinPosiArray = posiArray + 1
-                stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
+                stri = infoUrl(buscar,posiArray) + ' \n**' + str(messageAuthor) + ' buscó: ' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
                 await client.edit_message(msg, str(stri))
                 await client.clear_reactions(msg)
                 await client.add_reaction(msg, '👈')
@@ -100,7 +100,7 @@ async def on_message(message):
                 if posiArray == -1:
                  posiArray = cantidad - 1
                 strinPosiArray = posiArray + 1
-                stri = infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
+                stri = infoUrl(buscar,posiArray) + ' \n**' + str(messageAuthor) + ' buscó: ' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
                 await client.edit_message(msg, str(stri))
                 await client.clear_reactions(msg)
                 await client.add_reaction(msg, '👈')
