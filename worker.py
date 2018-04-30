@@ -31,23 +31,24 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name='susto.exe'))
  #   📌
 
-
-@client.event
-async def on_message(message):
-    messageAuthor = message.author
-    messageChannel = message.channel
-    messageTimestamp = message.timestamp
-
+async def on_reaction_add(reaction, user):
     #REACCION QUOTE
     def check(reaction, user):
               if reaction.count != 1 and reaction.emoji == '📌':
                   return 1
               return 0
 
-    rea = await client.wait_for_reaction(message=msg, check=check)
+    rea = await client.wait_for_reaction(message=reaction.message, check=check)
     if '{0.reaction.emoji}'.format(res) == '📌':
      print('ENTRAO A REACCION')
-    
+ 
+ 
+@client.event
+async def on_message(message):
+    messageAuthor = message.author
+    messageChannel = message.channel
+    messageTimestamp = message.timestamp
+
     #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif') or message.content.startswith('.tag'):
      args = message.content.split(" ")
