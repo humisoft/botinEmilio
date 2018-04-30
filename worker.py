@@ -35,10 +35,12 @@ async def on_ready():
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
     me = reaction.message.content
+    nomServ = reaction.message.server
+    nomChan = reaction.message.channel
     if reaction.emoji == '📌':
      em = discord.Embed(description=me, color=0xff0000)
      em.set_author(name=user.name, icon_url=user.avatar_url)
-     chan = discord.utils.get(client.get_all_channels(), server__name=reaction.message.server, name=reaction.message.channel)
+     chan = discord.utils.get(client.get_all_channels(), server__name=str(nomServ), name=str(nomChan))
      await client.send_message(chan, embed=em)
      
 
