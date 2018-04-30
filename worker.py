@@ -39,7 +39,7 @@ async def on_reaction_add(reaction, user):
      me = reaction.message.content
      nomServ = reaction.message.server
      nomChan = reaction.message.channel
-     fecha = datetime.datetime.strptime (str(reaction.message.timestamp), "%d-%m-%YT%H:%M:%S.%f+00:00")
+     fecha = 'Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(reaction.message.timestamp)
      tim = reaction.message.author.mention + ' Te han citado el mensaje con fecha ' + str(fecha)
      em = discord.Embed(description=me, color=0xff0000)
      em.set_author(name=reaction.message.author, icon_url=reaction.message.author.avatar_url)
