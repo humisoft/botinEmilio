@@ -37,7 +37,7 @@ async def on_reaction_add(reaction, user):
     me = reaction.message.content
     nomServ = reaction.message.server
     nomChan = reaction.message.channel
-    tim = user.mention + ' ' + reaction.message.edited_timestamp
+    tim = str(user.mention) + ' ' + str(reaction.message.edited_timestamp)
     if reaction.emoji == '📌':
      em = discord.Embed(description=me, color=0xff0000)
      em.set_author(name=user.name, icon_url=user.avatar_url)
