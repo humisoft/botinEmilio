@@ -38,6 +38,16 @@ async def on_message(message):
     messageChannel = message.channel
     messageTimestamp = message.timestamp
 
+    #REACCION QUOTE
+    def check(reaction, user):
+              if reaction.count != 1 and reaction.emoji == '📌':
+                  return 1
+              return 0
+
+    rea = await client.wait_for_reaction(message=msg, check=check)
+    if '{0.reaction.emoji}'.format(res) == '📌':
+     print('ENTRAO A REACCION')
+    
     #MOSTRAR GIF CON REACCION
     if message.content.startswith('.gif') or message.content.startswith('.tag'):
      args = message.content.split(" ")
