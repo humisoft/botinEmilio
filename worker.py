@@ -39,9 +39,9 @@ async def on_reaction_add(reaction, user):
     nomChan = reaction.message.channel
     tim = str(reaction.message.author.mention) + ' Te han citado el mensaje con fecha ' + str(reaction.message.timestamp)
     if reaction.emoji == '📌':
-     em = discord.Embed(description=me, color=0xff0000)
+     em = discord.Embed(description=reaction.message.author.mentio, color=0xff0000)
      #em.set_author(name=reaction.message.author, icon_url=reaction.message.author.avatar_url)
-     em.add_field(value=str(reaction.message.author.mention), inline=False)
+     em.add_field(name='Mensaje Citado' value=me, inline=False)
      em.set_footer(text=str(tim))
      chan = discord.utils.get(client.get_all_channels(), server__name=str(nomServ), name=str(nomChan))
      await client.send_message(chan, embed=em)
