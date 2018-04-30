@@ -34,11 +34,11 @@ async def on_ready():
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
     def check(reaction, user):
-              if reaction.count != 1 and reaction.emoji == '📌':
+              if reaction.emoji == '📌':
                   return 1
               return 0
 
-    rea = await client.wait_for_reaction(message=reaction.message, check=check)
+    rea = await client.wait_for_reaction(message='{0.reaction.message}', check=check)
     if '{0.reaction.emoji}'.format(res) == '📌':
      print('ENTRAO A REACCION')
  
