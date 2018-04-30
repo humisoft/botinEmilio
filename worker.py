@@ -31,6 +31,7 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name='susto.exe'))
  #   📌
 
+@client.event
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
     # def check(reaction, user):
@@ -43,6 +44,8 @@ async def on_reaction_add(reaction, user):
      # print('ENTRAO A REACCION')
     if reaction.emoji == '📌':
      print('ENTRAO A REACCION')
+     
+
 @client.event
 async def on_message(message):
     messageAuthor = message.author
