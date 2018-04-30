@@ -88,7 +88,6 @@ async def on_message(message):
                 strinPosiArray = posiArray + 1
                 stri = infoUrl(buscar,posiArray) + ' \n**' + str(messageAuthor) + ' buscó: ' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
                 await client.edit_message(msg, str(stri))
-                await client.edit_message(msg, embed=em2)
                 await client.clear_reactions(msg)
                 await client.add_reaction(msg, '👈')
                 await client.add_reaction(msg, '👉')
