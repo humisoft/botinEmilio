@@ -53,7 +53,7 @@ async def on_message(message):
       if infoUrl(buscar,ran) or infoTag(buscar,ran):
        posiArray = ran
        strinPosiArray = posiArray + 1
-       stri =  messageAuthor + ' buscó: ' + infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(strinPosiArray) + '/' + str(cantidad) + '__'
+       stri =  str(messageAuthor) + ' buscó: ' + infoUrl(buscar,posiArray) + ' \n**' + infoTag(buscar,posiArray) + '** __' +str(strinPosiArray) + '/' + str(cantidad) + '__'
        msg = await client.send_message(message.channel, str(stri))
        await client.add_reaction(msg, '👈')
        await client.add_reaction(msg, '👉')
