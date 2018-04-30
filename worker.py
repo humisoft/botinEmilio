@@ -87,7 +87,7 @@ async def on_message(message):
                  posiArray = 0
                 strinPosiArray = posiArray + 1
                 stri = infoUrl(buscar,posiArray) + ' \n**' + str(messageAuthor) + ' buscó: ' + infoTag(buscar,posiArray) + '** __' + str(strinPosiArray) + '/' + str(cantidad) + '__'
-                await client.edit_message(msg, str(stri))
+                #await client.edit_message(msg, str(stri))
                 em2 = discord.Embed(title='Gif', url=infoUrl(buscar,posiArray), description=infoTag(buscar,posiArray), color=0xff0000)
                 em2.set_image(url=infoUrl(buscar,posiArray))
                 await client.edit_message(msg, str(stri),embed=em2)
