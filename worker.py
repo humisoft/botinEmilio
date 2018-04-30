@@ -34,7 +34,7 @@ async def on_ready():
 @client.event
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
-    me = reaction.message.message
+    me = reaction.message.content
     print(str(me))
     if reaction.emoji == '📌':
      em = discord.Embed(description='YOYO', color=0xff0000)
