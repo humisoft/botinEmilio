@@ -34,19 +34,12 @@ async def on_ready():
 @client.event
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
-    # def check(reaction, user):
-              # if reaction.emoji == '📌':
-                  # return 1
-              # return 0
-
-    # rea = await client.wait_for_reaction(message='{0.reaction.message}', check=check)
-    # if '{0.reaction.emoji}'.format(rea) == '📌':
-     # print('ENTRAO A REACCION')
+    ava = user.avatar
     if reaction.emoji == '📌':
-     #em = discord.Embed(title='Gif', url='GG', description='YOYO', color=0xff0000)
+     em = discord.Embed(title=ava, description='YOYO', color=0xff0000)
      strin = 'hola'
      chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio', name='general')
-     await client.send_message(chan, strin)
+     await client.send_message(chan, embed=em)
      print('ENTRAO A REACCION')
      
 
