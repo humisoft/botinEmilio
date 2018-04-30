@@ -37,7 +37,7 @@ async def on_reaction_add(reaction, user):
     me = reaction.message.content
     nomServ = reaction.message.server
     nomChan = reaction.message.channel
-    tim = str(user.mention) + ' ' + str(reaction.message.edited_timestamp)
+    tim = str(reaction.message.author.mention) + ' Te han citado el mensaje con fecha ' + str(reaction.message.timestamp)
     if reaction.emoji == '📌':
      em = discord.Embed(description=me, color=0xff0000)
      em.set_author(name=reaction.message.author, icon_url=reaction.message.author.avatar_url)
