@@ -44,6 +44,8 @@ async def on_reaction_add(reaction, user):
      em.set_footer(text=str(tim))
      chan = discord.utils.get(client.get_all_channels(), server__name=str(nomServ), name=str(nomChan))
      await client.send_message(chan, embed=em)
+     mensa = reaction.message.author.mention
+     await client.send_message(chan, mensa)
      
 
 @client.event
