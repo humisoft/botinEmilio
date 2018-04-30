@@ -45,7 +45,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '📌':
      em = discord.Embed(title=str(user), description=str(reaction.message), color=0xff0000)
      
-     chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio')
+     chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio', name='general')
      await client.send_message(chan, em)
      print('ENTRAO A REACCION')
      
