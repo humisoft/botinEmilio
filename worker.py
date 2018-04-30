@@ -34,15 +34,13 @@ async def on_ready():
 @client.event
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
-    me = reaction.Message
+    me = reaction.message
     print(str(me))
     if reaction.emoji == '📌':
      em = discord.Embed(description='YOYO', color=0xff0000)
      em.set_author(name=user.mention, icon_url=client.user.avatar_url)
-     strin = 'hola'
      chan = discord.utils.get(client.get_all_channels(), server__name='BotinEmilio', name='general')
      await client.send_message(chan, embed=em)
-     print('ENTRAO A REACCION')
      
 
 @client.event
