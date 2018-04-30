@@ -33,16 +33,16 @@ async def on_ready():
 
 async def on_reaction_add(reaction, user):
     #REACCION QUOTE
-    def check(reaction, user):
-              if reaction.emoji == '📌':
-                  return 1
-              return 0
+    # def check(reaction, user):
+              # if reaction.emoji == '📌':
+                  # return 1
+              # return 0
 
-    rea = await client.wait_for_reaction(message='{0.reaction.message}', check=check)
-    if '{0.reaction.emoji}'.format(rea) == '📌':
+    # rea = await client.wait_for_reaction(message='{0.reaction.message}', check=check)
+    # if '{0.reaction.emoji}'.format(rea) == '📌':
+     # print('ENTRAO A REACCION')
+    if reaction.emoji == '📌':
      print('ENTRAO A REACCION')
- 
- 
 @client.event
 async def on_message(message):
     messageAuthor = message.author
