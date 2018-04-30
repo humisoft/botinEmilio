@@ -29,7 +29,7 @@ async def on_ready():
     print(client.user.id)
     print('------')
     await client.change_presence(game=discord.Game(name='susto.exe'))
-
+ #   📌
 
 
 @client.event
@@ -93,6 +93,7 @@ async def on_message(message):
                 await client.add_reaction(msg, '👉')
                 await client.add_reaction(msg, '🔴')
                 await client.add_reaction(msg, '🗑')
+
                  
                #REACCION 👈
                if '{0.reaction.emoji}'.format(res) == '👈':
