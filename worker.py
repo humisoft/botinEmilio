@@ -39,7 +39,7 @@ async def on_reaction_add(reaction, user):
               return 0
 
     rea = await client.wait_for_reaction(message='{0.reaction.message}', check=check)
-    if '{0.reaction.emoji}'.format(res) == '📌':
+    if '{0.reaction.emoji}'.format(rea) == '📌':
      print('ENTRAO A REACCION')
  
  
