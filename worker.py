@@ -235,6 +235,7 @@ async def on_message(message):
      help.add_field(name='Ejemplo Editar tags de Gif', value='.updategif http://wwww.susto.com/imagen.gif susto discord', inline=True)
      help.add_field(name='Comprobar si existe Gif', value='.comprobargif url', inline=True)
      help.add_field(name='Ejemplo Comprobar Gif', value='.comprobargif http://wwww.susto.com/imagen.gif', inline=True)
+     help.add_field(name='Citar comentario', value='usar emoji 📌', inline=True)
      await client.send_message(message.channel, embed=help)
 
     #STATUS BOT 
