@@ -30,7 +30,6 @@ async def on_ready():
     print(client.user.id)
     print('------')
     await client.change_presence(game=discord.Game(name='susto.exe'))
- #   📌
 
 @client.event
 async def on_reaction_add(reaction, user):
